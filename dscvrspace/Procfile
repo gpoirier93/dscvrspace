@@ -1,1 +1,1 @@
-web: node dscvrspace/app.js
+web: node app.js
