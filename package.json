@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "ejs": "2.4.1",
-    "express": "4.13.3"
+    "express": "4.13.3",
+    "pg": "^5.1.0"
   },
   "author": "Guillaume Poirier",
   "license": "ISC",
