@@ -1,15 +1,20 @@
 var models = require('./models');
 
-// models.Body.hasOne(models.BodyDetails);
-// models.Body.belongsTo(models.BodyDetails, { as: 'bodyDetails', foreignKey: 'body_details_id', constraints: false });
-//
-// // SYNC DB
-// models.sequelize.sync({force:true}).then(function () {
-//   console.log('Models association completed');
-// });
+models.Star.hasMany(models.Planet);
+models.Star.hasMany(models.NEO);
+models.Planet.hasMany(models.Ring);
+models.Planet.hasMany(models.Satellite);
+models.NEO.hasMany(models.CloseApproach);
 
-var body = models.Body.create({
-  diameter: 10
-}, {
-  include: [ {model: models.BodyDetails, as:'bodyDetails'} ]
+models.Star.belongsTo(models.Body);
+models.Planet.belongsTo(models.Body);
+models.Satellite.belongsTo(models.Body);
+models.NEO.belongsTo(models.Body);
+models.Body.belongsTo(models.BodyDetail);
+models.Body.belongsTo(models.Orbit);
+models.Orbit.belongsTo(models.OrbitDetail);
+
+// SYNC DB
+models.sequelize.sync({force:true}).then(function () {
+  console.log('Models association completed');
 });

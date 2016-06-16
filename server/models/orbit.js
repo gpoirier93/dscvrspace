@@ -8,26 +8,8 @@ module.exports = function(sequelize, DataTypes) {
     perihelion_argument: DataTypes.NUMERIC,
     ascending_node: DataTypes.NUMERIC
   }, {
-     tableName: 'orbit',
+    freezeTableName: true,
      underscored: true
-  }, {
-    classMethods: {
-      // associate: function(models) {
-      //   Body.hasOne(models.BodyDetails);
-      // }
-    }
-  }, {
-    hooks: {
-      beforeCreate: function(Orbit, fn) {
-        Orbit.created_at = Date.now();
-        Orbit.updated_at = Date.now();
-        fn(null, Orbit);
-      },
-      beforeUpdate: function(Orbit, fn) {
-        Orbit.updated_at = Date.now();
-        fn(null, Orbit);
-      }
-    }
   });
   return Orbit;
 };

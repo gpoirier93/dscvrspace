@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var OrbitDetails = sequelize.define('OrbitDetails', {
+  var OrbitDetail = sequelize.define('OrbitDetail', {
     orbit_determination_date: DataTypes.STRING,
     orbit_uncertainty: DataTypes.INTEGER,
     minimum_orbit_intersection: DataTypes.NUMERIC,
@@ -13,26 +13,8 @@ module.exports = function(sequelize, DataTypes) {
     mean_motion: DataTypes.NUMERIC,
     equinox: DataTypes.STRING
   }, {
-     tableName: 'orbit_details',
+     freezeTableName: true,
      underscored: true
-  }, {
-    classMethods: {
-      // associate: function(models) {
-      //   Body.hasOne(models.BodyDetails);
-      // }
-    }
-  }, {
-    hooks: {
-      beforeCreate: function(OrbitDetails, fn) {
-        OrbitDetails.created_at = Date.now();
-        OrbitDetails.updated_at = Date.now();
-        fn(null, OrbitDetails);
-      },
-      beforeUpdate: function(OrbitDetails, fn) {
-        OrbitDetails.updated_at = Date.now();
-        fn(null, OrbitDetails);
-      }
-    }
   });
-  return OrbitDetails;
+  return OrbitDetail;
 };
