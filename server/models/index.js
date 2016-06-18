@@ -8,6 +8,7 @@ var env       = process.env.NODE_ENV || 'development';
 var config    = require(__dirname + '/../config.json')[env];
 var db        = {};
 
+
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
@@ -24,13 +25,21 @@ fs
     db[model.name] = model;
   });
 
-Object.keys(db).forEach(function(modelName) {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+db.Star.hasMany(db.Planet);
+db.Star.hasMany(db.NEO);
+db.Planet.hasMany(db.Ring);
+db.Planet.hasMany(db.Satellite);
+db.NEO.hasMany(db.CloseApproach);
+
+db.Star.belongsTo(db.Body);
+db.Planet.belongsTo(db.Body);
+db.Satellite.belongsTo(db.Body);
+db.NEO.belongsTo(db.Body);
+db.Body.belongsTo(db.BodyDetail);
+db.Body.belongsTo(db.Orbit);
+db.Orbit.belongsTo(db.OrbitDetail);
 
 module.exports = db;

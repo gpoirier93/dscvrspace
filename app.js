@@ -13,9 +13,16 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
+  // var bodies = models.Body.findAll({ include: [ models.BodyDetail ]}).then(function(bodies) {
+  //   console.log(bodies[0]);
+  //   console.log(bodies[0].getBodyDetail());
+  // });
   response.render('index.ejs');
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+// SYNC DB
+models.sequelize.sync({force:false}).then(function () {
+  app.listen(app.get('port'), function() {
+    console.log('Node app is running on port', app.get('port'));
+  });
 });

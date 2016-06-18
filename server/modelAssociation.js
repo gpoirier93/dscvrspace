@@ -15,6 +15,10 @@ models.Body.belongsTo(models.Orbit);
 models.Orbit.belongsTo(models.OrbitDetail);
 
 // SYNC DB
-models.sequelize.sync({force:true}).then(function () {
+models.sequelize.sync({force:false}).then(function () {
   console.log('Models association completed');
+  var bodies = models.Body.findAll({ include: [ models.BodyDetail ]}).then(function(bodies) {
+    console.log(bodies[0]);
+    console.log(bodies[0].getBodyDetail());
+  });
 });

@@ -6,6 +6,12 @@ module.exports = function(sequelize, DataTypes) {
   }, {
      freezeTableName:true,
      underscored: true
+  }, {
+    classMethods: {
+      associate: function(models) {
+        Body.belongsTo(models.BodyDetail);
+      }
+    }
   });
   return Body;
 };
