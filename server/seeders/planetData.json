@@ -1,6 +1,6 @@
 [
   {
-    "name": {
+    "names": {
       "en": "Mercury",
       "fr": "Mercure"
     },
@@ -29,7 +29,7 @@
     }
   },
   {
-    "name": {
+    "names": {
       "en": "Venus",
       "fr": "Vénus"
     },
@@ -58,7 +58,7 @@
     }
   },
   {
-    "name": {
+    "names": {
       "en": "Earth",
       "fr": "Terre"
     },
@@ -87,7 +87,7 @@
     }
   },
   {
-    "name": {
+    "names": {
       "en": "Mars",
       "fr": "Mars"
     },
@@ -116,7 +116,7 @@
     }
   },
   {
-    "name": {
+    "names": {
       "en": "Jupiter",
       "fr": "Jupiter"
     },
@@ -145,7 +145,7 @@
     }
   },
   {
-    "name": {
+    "names": {
       "en": "Saturn",
       "fr": "Saturne"
     },
@@ -174,7 +174,7 @@
     }
   },
   {
-    "name": {
+    "names": {
       "en": "Uranus",
       "fr": "Uranus"
     },
@@ -203,7 +203,7 @@
     }
   },
   {
-    "name": {
+    "names": {
       "en": "Neptune",
       "fr": "Neptune"
     },
@@ -232,7 +232,7 @@
     }
   },
   {
-    "name": {
+    "names": {
       "en": "Pluto",
       "fr": "Pluton"
     },

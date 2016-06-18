@@ -7,6 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     jupiter_tisserand_invariant: DataTypes.NUMERIC,
     epoch_osculation: DataTypes.NUMERIC,
     orbital_period: DataTypes.NUMERIC,
+    orbital_speed: DataTypes.NUMERIC,
     aphelion_distance: DataTypes.NUMERIC,
     perihelion_time: DataTypes.NUMERIC,
     mean_anomaly: DataTypes.NUMERIC,

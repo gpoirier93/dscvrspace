@@ -28,18 +28,18 @@ fs
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.Star.hasMany(db.Planet);
-db.Star.hasMany(db.NEO);
-db.Planet.hasMany(db.Ring);
-db.Planet.hasMany(db.Satellite);
-db.NEO.hasMany(db.CloseApproach);
+db.Star.hasMany(db.Planet, {as:'planets'});
+db.Star.hasMany(db.NEO, {as:'neos'});
+db.Planet.hasMany(db.Ring, {as:'rings'});
+db.Planet.hasMany(db.Satellite, {as:'satellites'});
+db.NEO.hasMany(db.CloseApproach, {as:'close_approaches'});
 
-db.Star.belongsTo(db.Body);
-db.Planet.belongsTo(db.Body);
-db.Satellite.belongsTo(db.Body);
-db.NEO.belongsTo(db.Body);
-db.Body.belongsTo(db.BodyDetail);
-db.Body.belongsTo(db.Orbit);
-db.Orbit.belongsTo(db.OrbitDetail);
+db.Star.belongsTo(db.Body, {as:'body'});
+db.Planet.belongsTo(db.Body, {as:'body'});
+db.Satellite.belongsTo(db.Body, {as:'body'});
+db.NEO.belongsTo(db.Body, {as:'body'});
+db.Body.belongsTo(db.BodyDetail, {as:'details'});
+db.Body.belongsTo(db.Orbit, {as:'orbit'});
+db.Orbit.belongsTo(db.OrbitDetail, {as:'details'});
 
 module.exports = db;
