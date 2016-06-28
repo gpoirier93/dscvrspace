@@ -1,56 +1,35 @@
-// var express = require('express');
-// var todo = require('../server/models');
-// var router = express.Router();
-//
-// /* GET home page. */
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
-//
-// module.exports = router;
 var express = require('express');
-var models = require('../server/models');
+var dao = require('./apiMethods.js');
 
 module.exports.getApiRouter = function(app) {
   var apiRouter = express.Router();
+
+  apiRouter.get('/satellites/:id', function(req, res) {
+    var id = req.params.id;
+    dao.findSatelliteById(id, res);
+  })
 
   apiRouter.get('/planets/:id?', function(req, res) {
     var id = req.params.id;
     var include = req.query.full;
     if (id) {
-      if(include) {
-        models.Planet.findById(id, {
-          include:[ {model:models.Body, as:'body'}]
-        }).then(function(planet) {
-          res.send({
-            planet:planet
-          });
-        });
-      } else {
-        models.Planet.findById(id, {
-          include:[ {model:models.Body, as:'body', include: [{model:models.BodyDetail, as:'details'}]}]
-        }).then(function(planet) {
-          res.send({
-            planet:planet
-          });
-        });
-      }
+      dao.findPlanetById(id, res);
     } else {
-      var response = 'planets';
-      if(include) {
-        response += ' included';
-      }
-      res.send(response);
+      dao.findAllPlanets(res);
     }
   });
 
   apiRouter.get('/stars/:id?', function(req, res) {
     var id = req.params.id;
     if (id) {
-      res.send('star' + id);
+      dao.findStarById(id, res);
     } else {
-      res.send('stars');
+      dao.findAllStars(res);
     }
+  });
+
+  apiRouter.get('/solarSystem', function(req, res) {
+    dao.findSolarSystem(res);
   });
 
   return apiRouter;
