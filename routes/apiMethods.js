@@ -159,6 +159,25 @@ dao.findSolarSystem = function(response) {
   });
 }
 
+dao.findPlanetarySystem = function(id, response) {
+  models.Planet.findById(id, { include:[
+      { model:models.Body, as:'body', include:[
+        { model:models.Orbit, as:'orbit' }]}
+    , { model:models.Satellite, as:'satellites', include:[
+        { model:models.Body, as:'body', include:[
+          { model:models.Orbit, as:'orbit' }]}]}
+    , { model:models.Ring, as:'rings'}]
+  }).then(function(planetarySystem) {
+    if (planetarySystem) {
+      response.send(planetarySystem);
+    } else {
+      sendError(response, new serverErrors.ResourceNotFoundError())
+    }
+  }).catch(function(error) {
+    sendError(response, new serverErrors.BadDBRequestError(error.message));
+  });
+}
+
 var sendError = function(response, error) {
   if (error.name === 'ResourceNotFound') {
     response.status(404).send(error.message);

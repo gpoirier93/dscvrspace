@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="dscvrspace">
+  <head>
+    <title>dscvrspace</title>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/materialize.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src='/bower_components/angular/angular.min.js'></script>
+    <script src='/bower_components/angular-route/angular-route.min.js'></script>
+    <script src='/bower_components/angular-route/angular-route.min.js'></script>
+    <script src='/js/angularApp.js'></script>
+  </head>
+  <body class="grey darken-4" ng-controller="mainController" >
+    <div class="navbar-fixed">
+      <nav class="grey darken-4">
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo right">dscvrspace</a>
+          <ul class="left hide-on-med-and-down">
+            <li><a href="">Accueil</a></li>
+            <li><a href="">Système solaire</a></li>
+            <li><a href="">À propos</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="ds-content">
+      <div ng-view></div>
+    </div>
+  </body>
+</html>
