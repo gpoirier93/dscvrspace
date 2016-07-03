@@ -7,6 +7,49 @@ body {
   padding-left: 50px;
 }
 
-/*a {
+.ds-light-text {
+  color: #eceff1 !important; 
+}
+
+.ds-dark-text {
+  color: #263238 !important; 
+}
+
+.ds-lightest {
+  background-color: #78909c !important; 
+  color: #eceff1;
+}
+
+.ds-lighter {
+  background-color: #607d8b !important;
+  color: #eceff1; 
+}
+
+.ds-light {
+  background-color: #546e7a !important;
+  color: #eceff1; 
+}
+
+.ds-dark {
+  background-color: #455a64 !important; 
+  color: #eceff1;
+}
+
+.ds-darker {
+  background-color: #37474f !important;
+  color: #eceff1; 
+}
+
+.ds-darkest {
+  background-color: #263238 !important;
+  color: #eceff1; 
+}
+
+.ds-button:hover {
+  transition: background-color 0.3s !important;
+  background-color: #546e7a !important;
+}
+
+a {
   color: #00B7FF;
-}*/
+}

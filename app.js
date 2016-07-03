@@ -12,11 +12,15 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/public/views');
 app.set('view engine', 'ejs');
 
-app.get('*', function(request, response) {
+app.get('/', function(request, response) {
   response.render('index.ejs');
 });
 
 app.use('/api', apiRouter.getApiRouter(app));
+
+app.get('/*', function(request, response) {
+  response.redirect('/');
+});
 
 // SYNC DB
 models.sequelize.sync({force:false}).then(function () {

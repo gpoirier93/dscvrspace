@@ -1,24 +1,46 @@
-var dscvrspace = angular.module('dscvrspace', ['ngRoute']);
+var app = angular.module('dscvrspace', ['ngRoute']);
 
-dscvrspace.config(function($routeProvider) {
+app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+  var $log =  angular.injector(['ng']).get('$log');
   $routeProvider.when('/', {
     templateUrl: '/views/home.ejs',
     controller: 'homeController'
-  })
-})
+  }).when('/solarSystem', {
+    templateUrl: 'views/solarSystem.ejs',
+    controller:'systemController',
+    resolve: {
+      system: function(systemService) {
+        return systemService.getSolarSystem();
+      }
+    }
+  }).when('/about', {
+    templateUrl:'/views/about.ejs',
+    controller:'aboutController'
+  }).otherwise('/');
 
-dscvrspace.controller('mainController', function($scope) {
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false 
+  });
+}]);
+
+app.controller('mainController', function($scope) {
   $scope.message = 'Main page';
 });
 
-dscvrspace.controller('homeController', function($scope) {
+app.controller('homeController', function($scope) {
   $scope.message = 'Home Page';
 });
 
-dscvrspace.controller('systemController', function($scope) {
+app.controller('aboutController', function($scope){
+
+});
+
+app.controller('systemController', function($scope, $log, system) {
+  $log.log(system);
   $scope.message = 'System Page';
 });
 
-dscvrspace.controller('detailController', function($scope) {
+app.controller('detailController', function($scope) {
   $scope.message = 'Detail Page';
 });

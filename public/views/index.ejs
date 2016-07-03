@@ -11,22 +11,21 @@
     <script src='/bower_components/angular-route/angular-route.min.js'></script>
     <script src='/bower_components/angular-route/angular-route.min.js'></script>
     <script src='/js/angularApp.js'></script>
+    <script src='/js/services/systemService.js'></script>
   </head>
-  <body class="grey darken-4" ng-controller="mainController" >
+  <body class="ds-darkest" ng-controller="mainController" >
     <div class="navbar-fixed">
-      <nav class="grey darken-4">
+      <nav class="ds-darker">
         <div class="nav-wrapper">
           <a href="#" class="brand-logo right">dscvrspace</a>
           <ul class="left hide-on-med-and-down">
-            <li><a href="">Accueil</a></li>
-            <li><a href="">Système solaire</a></li>
-            <li><a href="">À propos</a></li>
+            <li><a href="/home">Accueil</a></li>
+            <li><a href="/solarSystem">Système solaire</a></li>
+            <li><a href="/about">À propos</a></li>
           </ul>
         </div>
       </nav>
     </div>
-    <div class="ds-content">
-      <div ng-view></div>
-    </div>
+    <div ng-view></div>
   </body>
 </html>
