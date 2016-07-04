@@ -7,7 +7,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     controller: 'homeController'
   }).when('/solarSystem', {
     templateUrl: 'views/solarSystem.ejs',
-    controller:'systemController',
+    controller:'SystemController',
     resolve: {
       system: function(systemService) {
         return systemService.getSolarSystem();
@@ -34,11 +34,6 @@ app.controller('homeController', function($scope) {
 
 app.controller('aboutController', function($scope){
 
-});
-
-app.controller('systemController', function($scope, $log, system) {
-  $log.log(system);
-  $scope.message = 'System Page';
 });
 
 app.controller('detailController', function($scope) {

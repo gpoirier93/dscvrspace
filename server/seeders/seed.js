@@ -23,7 +23,7 @@ models.sequelize.sync({force:true}).then(function () {
   ****************/
   //SUN
   models.Body.create({
-    diameter: 1391400000,
+    diameter: 1391400,
     details: {
       volume: 10
     }
