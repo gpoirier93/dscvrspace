@@ -1,6 +1,8 @@
 app.controller('SystemController', ['$scope', '$rootScope', '$log', 'system', 'sceneFactory','orbitModellerService', function($scope, $rootScope, $log, system, sceneFactory, orbitModellerService) {
     // Define distance divider
     $rootScope.dd = 1000000;
+    //Define bars height
+    $rootScope.bh = 128;
 
     // Subscribe to locationChangeStart event to save exit state of the scene
     $scope.$on('$locationChangeStart', function(event) {
@@ -10,7 +12,7 @@ app.controller('SystemController', ['$scope', '$rootScope', '$log', 'system', 's
     // If there was no previous state, init scene and camera
     if (!sceneFactory.isDefined) {
         var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 500000 );
+        var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / (window.innerHeight - $rootScope.bh), 0.1, 500000 );
 
         bulbLight = new THREE.PointLight( 0xFFFFF, 500, 10000, 200 );
         bulbMat = new THREE.MeshStandardMaterial( {
@@ -44,12 +46,12 @@ app.controller('SystemController', ['$scope', '$rootScope', '$log', 'system', 's
     }
 
     // Update camera aspect
-    sceneFactory.camera.aspect = window.innerWidth/window.innerHeight;
+    sceneFactory.camera.aspect = window.innerWidth/(window.innerHeight - $rootScope.bh);
     sceneFactory.camera.updateProjectionMatrix();
 
     // Create renderer 
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize( window.innerWidth, window.innerHeight);
+    var renderer = new THREE.WebGLRenderer({antialias: true});
+    renderer.setSize( window.innerWidth, window.innerHeight - $rootScope.bh);
     var canvas = renderer.domElement;
     canvas.id = 'system-canvas';
     document.getElementById('scene-div').appendChild( canvas );
@@ -77,14 +79,13 @@ app.controller('SystemController', ['$scope', '$rootScope', '$log', 'system', 's
     }
 
     function onWindowResize(e){
-        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.aspect = window.innerWidth / (window.innerHeight - $rootScope.bh);
         camera.updateProjectionMatrix();
 
-        renderer.setSize( window.innerWidth, window.innerHeight );
+        renderer.setSize( window.innerWidth, (window.innerHeight - $rootScope.bh) );
     }
 
     function saveSceneState() {
-        $log.log('yeah');
         sceneFactory.orbitControlsParameters = {
             zoom: orbitControls.zoom,
             target: orbitControls.target

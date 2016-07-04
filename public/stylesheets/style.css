@@ -50,6 +50,14 @@ body {
   background-color: #546e7a !important;
 }
 
+.ds-half-height {
+  height: 50%;
+}
+
+.ds-orbit-controls li {
+  display:inline;
+}
+
 a {
   color: #00B7FF;
 }

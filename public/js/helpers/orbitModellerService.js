@@ -10,9 +10,12 @@ app.service('orbitModellerService', ['$rootScope', function($rootScope) {
             0                 // aRotation 
         );
 
-        var path = new THREE.Path( curve.getPoints( 100 ) );
-        geometry = path.createPointsGeometry( 100 );
-        material = new THREE.LineBasicMaterial( { color : 0xFFFFFF } );
+        var path = new THREE.Path( curve.getPoints( 200 ) );
+        geometry = path.createPointsGeometry( 200 );
+        material = new THREE.LineBasicMaterial( { 
+            color : 0xFFFFFF,
+            linewidth : 1
+         } );
 
         return new THREE.Line( geometry, material );
     }
