@@ -1,4 +1,4 @@
-app.service('orbitModellerService', ['$rootScope', function($rootScope) {
+app.service('orbitModellerService', ['$rootScope','$log', function($rootScope, $log) {
     this.modelOrbit = function(orbit) {
         var bigAxis = orbit.semi_major_axis/$rootScope.dd;
         var smallAxis = orbit.semi_major_axis * Math.sqrt((orbit.eccentricity * orbit.eccentricity)+1)/$rootScope.dd;
@@ -17,7 +17,23 @@ app.service('orbitModellerService', ['$rootScope', function($rootScope) {
             linewidth : 1
          } );
 
-        return new THREE.Line( geometry, material );
+        var orbitLine = new THREE.Line( geometry, material );
+        var transalationX = bigAxis * orbit.eccentricity;
+        var rotationX = (orbit.ascending_node * 2 * Math.PI) / 360; 
+        var rotationY = (orbit.inclination * 2 * Math.PI) / 360;
+        var rotationZ = (orbit.perihelion_argument * 2 * Math.PI) / 360;
+
+        // $log.log(orbit);
+        $log.log(transalationX + '     '+rotationX+'     '+rotationY+'     '+rotationZ);
+
+        orbitLine.translateX(transalationX);
+        orbitLine.rotateY(rotationY);
+        orbitLine.rotateZ(rotationZ);
+        orbitLine.rotateZ(rotationX)
+        // orbitLine.rotateX(rotationX);
+        // orbit.matrixWorldNeedsUpdate = true;
+
+        return orbitLine;
     }
 
     this.modelBody = function(body) {

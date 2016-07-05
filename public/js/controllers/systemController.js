@@ -34,6 +34,31 @@ app.controller('SystemController', ['$scope', '$rootScope', '$log', 'system', 's
         
         camera.position.z = 100;
 
+        // Add axis
+        var material = new THREE.LineDashedMaterial({color: 0x0000ff});
+        var geometry = new THREE.Geometry();
+        geometry.vertices.push(
+            new THREE.Vector3( 0, 0, 0 ),
+            new THREE.Vector3( 10000, 0, 0 )
+        );
+        scene.add ( new THREE.Line(geometry, material));
+
+        material = new THREE.LineDashedMaterial({color: 0x00ff00});
+        geometry = new THREE.Geometry();
+        geometry.vertices.push(
+            new THREE.Vector3( 0, 0, 0 ),
+            new THREE.Vector3( 0, 10000, 0 )
+        );
+        scene.add ( new THREE.Line(geometry, material));
+
+        material = new THREE.LineDashedMaterial({color: 0xff0000});
+        geometry = new THREE.Geometry();
+        geometry.vertices.push(
+            new THREE.Vector3( 0, 0, 0 ),
+            new THREE.Vector3( 0, 0, 10000 )
+        );
+        scene.add ( new THREE.Line(geometry, material));
+
         // Add newly created entity to scene factory
         sceneFactory.scene = scene;
         sceneFactory.camera = camera;
