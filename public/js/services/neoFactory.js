@@ -7,6 +7,8 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
 
     // Array of neos corresponding to the last search
     neoFactory.results = [];
+    neoFactory.browseCatalogue = [];
+    neoFactory.selectedNeo;
     // Dictionnary info on the browse search
     neoFactory.page = {};
 
@@ -35,7 +37,7 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
 
     // Browse neos catalogue
     neoFactory.browse = function(page, successCallback, errorCallback) {
-        $http.get(neoFactory.BASE_URL+'/browse', {
+        $http.get(neoFactory.BASE_URL+'/neo/browse', {
             params: {
                 'api_key': neoFactory.API_KEY,
                 'page': page,
@@ -43,11 +45,9 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
             }
         }).then(function (response) {
             if (response.data) {
-                    if (page === 0) {
-                        neoFactory.results = [];
-                    }
                     // We put the neo inside the results array
-                    neoFactory.results.push(response.data.near_earth_objects);
+                    $log.log(response.data.near_earth_objects);
+                    neoFactory.browseCatalogue.push.apply(neoFactory.browseCatalogue,response.data.near_earth_objects);
                     neoFactory.page = response.data.page;
                     successCallback();
                 } else {

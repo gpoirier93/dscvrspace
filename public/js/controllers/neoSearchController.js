@@ -1,5 +1,6 @@
 app.controller('NeoSearchController', ['$log','$scope','$location','neoFactory', function($log, $scope, $location, neoFactory) {
     
+    $scope.page = 0;
     $scope.searchMethodIndex = 0;
     $scope.searchMethod = {
         "type": "select", 
@@ -16,23 +17,29 @@ app.controller('NeoSearchController', ['$log','$scope','$location','neoFactory',
         neoFactory.getNeoById(id, function() {
             // Put the results in the $scope then navigate to the neoDetails page
             $scope.results = neoFactory.results;
-            $location.path('/neo/'+neoFactory.results[0].neo_reference_id); 
+            $scope.navigateToNeoDetail(neoFactory.results[0]); 
         }, errorCallback);
     }
 
     $scope.browse = function() {
         neoFactory.browse($scope.page, function() {
-            $scope.results = neoFactory.results;
+            $scope.results = neoFactory.browseCatalogue;
         }, errorCallback());
     }
 
     function errorCallback(error) {
-        $log.log(error);
         $scope.results = [];
     }
 
     $scope.updateSearchMethod = function(){
         $scope.searchMethodIndex = searchMethodIndex($scope.searchMethod.value);
+        if ($scope.searchMethodIndex == 2) {
+            if (neoFactory.browseCatalogue.length > 0) {
+                $scope.results = neoFactory.browseCatalogue;
+            } else {
+                $scope.browse();
+            }
+        }
     }
 
     function searchMethodIndex(value) {
@@ -43,5 +50,10 @@ app.controller('NeoSearchController', ['$log','$scope','$location','neoFactory',
         } else if (value === 'Tous les astéroïdes') {
             return 2;
         }
+    }
+
+    $scope.navigateToNeoDetail = function(neo) {
+        neoFactory.selectedNeo = neo
+        $location.path('/neo/'+neo.neo_reference_id);
     }
 }]);
