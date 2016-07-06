@@ -1,4 +1,4 @@
-var app = angular.module('dscvrspace', ['ngRoute']);
+var app = angular.module('dscvrspace', ['ngRoute', 'ui.materialize']);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   var $log =  angular.injector(['ng']).get('$log');

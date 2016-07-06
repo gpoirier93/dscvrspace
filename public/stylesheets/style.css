@@ -119,3 +119,15 @@ a {
 .ds-table-light th.title {
   border-right: 2px solid #37474f;
 }
+
+.ds-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: #263238;
+  margin-left:-0.5rem !important;
+  padding: 5px;
+  width:400px;
+  height:32px;
+  background: url('../res/ic_arrow_drop_down_black_24px.svg') 100% / 10% no-repeat #eee;
+}
