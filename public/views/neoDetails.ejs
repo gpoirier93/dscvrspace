@@ -1,0 +1,183 @@
+<div class="container" style="margin-top:20px;">
+    <div class="row ds-info-row">
+        <div class="col s12">
+            <div class="row ds-info-section-row">
+                <div class="col s12">
+                    <div class="valign-wrapper">
+                        <i class="material-icons medium valign" style="display:inline-block;">description</i>
+                        <h4 class="valign" style="display:inline-block;">Fiche d'identification</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row ds-info-detail-row">
+                <div class="col s6">
+                    <h5>Nom</h5>
+                    <p>{{neo.name}}</p>
+                </div>
+                <div class="col s6">
+                    <h5>Identifiant du JPL</h5>
+                    <p>{{neo.neo_reference_id}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <a class="btn ds-button ds-lightest" target="_blank" href="{{neo.nasa_jpl_url}}" style="margin-left:10px;"><i class="material-icons right">open_in_new</i>Fiche complète sur le site du JPL</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ds-info-row">
+        <div class="col s12">
+            <div class="row ds-info-section-row">
+                <div class="col s12">
+                    <div class="valign-wrapper">
+                        <i class="material-icons medium valign" style="display:inline-block;">assignment</i>
+                        <h4 class="valign" style="display:inline-block;">Propriétés physiques</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row ds-info-detail-row">
+                <div class="col s12">
+                    <h5>Magnitude absolue (H)</h5>
+                    <p>{{neo.absolute_magnitude_h}}</p>
+                    </br>
+                    <h5>Diamètre estimé</h5>
+                    <table class="ds-table-light">
+                        <thead>
+                            <tr class="separator">
+                                <th data-field="" class="title"></th>
+                                <th data-field="km">( km )</th>
+                                <th data-field="m">( m )</th>
+                                <th data-field="miles">( mi )</th>
+                                <th data-field="pied">( pi )</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>    
+                                <th scope="row" class="title">MIN</th>
+                                <td>{{neo.estimated_diameter.kilometers.estimated_diameter_min}}</td>
+                                <td>{{neo.estimated_diameter.meters.estimated_diameter_min}}</td>
+                                <td>{{neo.estimated_diameter.miles.estimated_diameter_min}}</td>
+                                <td>{{neo.estimated_diameter.feet.estimated_diameter_min}}</td>
+                            </tr>
+                            <tr class="last">
+                                <th scope="row" class="title">MAX</th>
+                                <td>{{neo.estimated_diameter.kilometers.estimated_diameter_max}}</td>
+                                <td>{{neo.estimated_diameter.meters.estimated_diameter_max}}</td>
+                                <td>{{neo.estimated_diameter.miles.estimated_diameter_max}}</td>
+                                <td>{{neo.estimated_diameter.feet.estimated_diameter_max}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ds-info-row">
+        <div class="col s12">
+            <div class="row ds-info-section-row">
+                <div class="col s12">
+                    <div class="valign-wrapper">
+                        <i class="material-icons medium valign" style="display:inline-block;">settings_backup_restore</i>
+                        <h4 class="valign" style="display:inline-block;">Propriétés orbitales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row ds-info-detail-row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="row">
+                                <div class="col s12">
+                                    <table class="ds-table-light" style="margin-top:10px;">
+                                        <thead>
+                                            <tr class="separator">
+                                                <th data-field="property">PROPRIÉTÉ</th>
+                                                <th data-field="value">VALEUR</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Distance minimale d'intersection avec la Terre (ua)</td>
+                                                <td>{{ orbit.minimum_orbit_intersection }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Excentricité</td>
+                                                <td>{{ orbit.eccentricity}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Axe semi majeur (ua)</td>
+                                                <td>{{ orbit.semi_major_axis}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Distance du périhélie (ua)</td>
+                                                <td>{{ orbit.perihelion_distance}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Distance de l'aphélie (ua)</td>
+                                                <td>{{ orbit.aphelion_distance}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Inclinaison (°)</td>
+                                                <td>{{ orbit.inclination}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Argument du périhélie (°)</td>
+                                                <td>{{ orbit.perihelion_argument}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Longitude du noeud ascendant (°)</td>
+                                                <td>{{ orbit.ascending_node_longitude}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Période orbitale (jour)</td>
+                                                <td>{{ orbit.orbital_period }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Anomalie moyenne (°)</td>
+                                                <td>{{ orbit.mean_anomaly }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mouvement moyen (°/jour)</td>
+                                                <td>{{ orbit.mean_motion }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Temps de passage au périhélion (jour julien)</td>
+                                                <td>{{ orbit.perihelion_time }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Invariant de Tisserand par rapport à Jupiter</td>
+                                                <td>{{ orbit.jupiter_tisserand_invariant }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Équinoxe</td>
+                                                <td>{{ orbit.equinox }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Époque de détermination (TDB)</td>
+                                                <td>{{ orbit.epoch_osculation }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Date de détermination de l'orbite</td>
+                                                <td>{{ orbit_determination_date | date : "dd-MM-yyyy" }}</td>
+                                            </tr>
+                                            <tr class="last">
+                                                <td>Incertitude liée à l'orbite (U)</td>
+                                                <td>{{ orbit.orbit_uncertainty }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            orbit
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

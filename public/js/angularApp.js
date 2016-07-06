@@ -19,6 +19,9 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   }).when('/neo', {
     templateUrl:'/views/neoSearch.ejs',
     controller:'NeoSearchController'
+  }).when('/neo/:id', {
+    templateUrl:'/views/neoDetails.ejs',
+    controller:'NeoDetailsController'
   }).otherwise('/');
 
   $locationProvider.html5Mode({
