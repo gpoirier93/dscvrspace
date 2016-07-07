@@ -5,12 +5,14 @@
 
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="/stylesheets/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
+    <link rel="stylesheet" href="/bower_components/angularjs-datepicker/dist/angular-datepicker.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.1.9/angular-materialize.min.js"></script>
+    <script src="/bower_components/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
     <script src='/bower_components/angular-route/angular-route.min.js'></script>
     <script src='/bower_components/three.js/build/three.min.js'></script>
     <script src='/bower_components/three.js/examples/js/controls/OrbitControls.js'></script>
@@ -39,6 +41,6 @@
         </div>
       </nav>
     </div>
-    <div ng-view></div>
+    <div ng-view autoscroll="true"></div>
   </body>
 </html>

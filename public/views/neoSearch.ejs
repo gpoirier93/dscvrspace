@@ -1,16 +1,23 @@
-<div class="container" style="margin-top:20px">
+<div class="container" style="margin-top:20px" ngCloak>
     <div class="row ds-info-row ds-info-section-row" style="padding:0px 10px;">
         <div class="col s12">
             <div class="row">
                 <div class="col s12">
                     <div>
                         <h3 class="ds-light-text">Rechercher des astéroïdes</h3>
-                        <p class="ds-light-text flow-text" style="font-size:medium;">Cet engin de recherche permet d'accéder au jeu de données du Jet Propulsion Laboratory ( JPL ) recensant les différents astéroïdes du système solaire.</p>
+                        <p class="ds-light-text flow-text" style="font-size:medium;">Cet engin de recherche permet d'accéder au jeu de données de l'équipe des Near-earth objects ( NEO ) du Jet Propulsion Laboratory ( JPL ) recensant les différents astéroïdes du système solaire.</p>
+                        <p class="ds-light-text flow-text" style="font-size:small;">Nombre d'astéroïdes accessibles : {{stats.near_earth_object_count}}</p>
+                        <p class="ds-light-text flow-text" style="font-size:small;">Date de la dernière mise à jour : {{stats.last_updated | date : "dd-MM-yyyy"}}</p>
                     </div> 
-                    <select class="ds-select" ng-options="v for v in searchMethod.values"
+                    <select class="ds-select" ng-options="v.value as v.title for v in searchMethod.values"
                     ng-model="searchMethod.value" ng-change="updateSearchMethod()">
                     </select>
-                    <div ng-show="searchMethodIndex === 0" style="padding:0px;margin-top:20px;">
+                    <div ng-show="searchMethod.value === 1" style="padding:0px;margin-top:20px;">
+                        <datepicker>
+                            <input class="ds-input" ng-model="neoDate" date-format="dd-MM-yyyy" type="text"/>
+                        </datepicker>
+                    </div>
+                    <div ng-show="searchMethod.value === 2" style="padding:0px;margin-top:20px;">
                         <div class="col s11" style="padding:0px">
                             <input class="ds-search-bar" type="text" id="search-bar" placeholder="Rechercher..." ng-keydown="($event.which === 13)?searchNeoById():0"></input>
                         </div>
@@ -20,15 +27,48 @@
                     </div>
                 </div>
             </div>
-            <div class="row ds-info-detail-row" ng-show="results.length > 0" style>
+            <div class="row ds-info-detail-row">
                 <div class="col s12">
-                    <div>
+                    <ul class="pagination center-align">
+                        <li style="padding:1px 1px;"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(0)"><i class="material-icons">first_page</i></button></li>
+                        <li style="padding:1px 1px;"><button class="btn ds-button-small ds-lightest" ng-click="previousPage()"><i class="material-icons">chevron_left</i></button></li>
+                        <li style="padding:1px 1px;" ng-show="pageIndex === page.total_pages"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex-4)">{{pageIndex-3}}</button></li>
+                        <li style="padding:1px 1px;" ng-show="pageIndex >= page.total_pages - 1"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex-3)">{{pageIndex-2}}</button></li>
+                        <li style="padding:1px 1px;" ng-show="pageIndex > 1"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex-2)">{{pageIndex-1}}</button></li>
+                        <li style="padding:1px 1px;" ng-show="pageIndex > 0"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex-1)">{{pageIndex}}</button></li>
+                        <li style="padding:1px 1px;"><button class="btn ds-button-small ds-dark disabled">{{pageIndex+1}}</button></li>
+                        <li style="padding:1px 1px;" ng-show="pageIndex < page.total_pages-1"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex+1)">{{pageIndex+2}}</button></li>
+                        <li style="padding:1px 1px;" ng-show="pageIndex < page.total_pages"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex+2)">{{pageIndex+3}}</button></li>
+                        <li style="padding:1px 1px;" ng-show="pageIndex < 2"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex+3)">{{pageIndex+4}}</button></li>
+                        <li style="padding:1px 1px;" ng-show="pageIndex < 1"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex+4)">{{pageIndex+5}}</button></li>
+                        <li style="padding:1px 1px;"><button class="btn ds-button-small ds-lightest" ng-click="nextPage()"><i class="material-icons">chevron_right</i></button></li>
+                        <li style="padding:1px 1px;"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(page.total_pages)" ng-disabled="pageIndex === page.total_pages - 1"><i class="material-icons">last_page</i></button></li>
+                    </ul>
+                    <div ng-show="dataAvailable">
                         <ul class="collection">
-                            <li class="collection-item" ng-repeat="neo in results" ng-click="navigateToNeoDetail(neo)"><a>{{neo.name}}</a></li>
+                            <a href="/neo/neo.neo_reference_id" class="collection-item ds-dark-text" ng-repeat="neo in results" ng-click="updateSelectedNeo(neo)">
+                                <div>{{$index+ 1 + (pageIndex * 20)}}.&nbsp;&nbsp;&nbsp;&nbsp;{{neo.name}}
+                                    <div class="secondary-content">
+                                        <i class="material-icons ds-dark-text">arrow_forward
+                                        </i>
+                                    </div>
+                                </div>
+                            </a>
                         </ul>
+                    </div>
+                    <div ng-hide="dataAvailable">
+                        <p class="ds-light-text flow-text center-align" style="font-size:medium;margin-top:10px">Il n'y a pas de données disponibles qui correspondent à votre recherche</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 100 // Creates a dropdown of 15 years to control year
+        });
+    });
+</script>
