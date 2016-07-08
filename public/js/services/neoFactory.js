@@ -8,16 +8,16 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
 
     // Array of neos corresponding to the last search
     neoFactory.results = [];
-    // neoFactory.browseCatalogue = [];
+    neoFactory.resultsKeys = [];
     neoFactory.selectedNeo;
-    // Dictionnary info on the browse search
-    neoFactory.page = {};
-    neoFactory.pageIndex = 0;
+    neoFactory.selectedDate = new Date();
 
     // Dictionnary info on the browse search
     neoFactory.links = {};
     neoFactory.page = {};
+    neoFactory.elementCount;
     neoFactory.pageIndex = 0;
+    neoFactory.dateOptionIndex = 0;
 
     // Get specific neo by id
     neoFactory.getNeoById = function (id, successCallback, errorCallback) {
@@ -42,6 +42,24 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
         }
     }
 
+    neoFactory.getNeoOrbitalData = function (id, successCallback, errorCallback) {
+        if (id) {
+            $http.get(neoFactory.BASE_URL+'/neo/'+id, {
+                params: {
+                    'api_key':neoFactory.API_KEY
+                }
+            }).then(function(response) {
+                if (response.data) {
+                    // We put the neo inside the results array
+                    neoFactory.selectedNeo = response.data;
+                    successCallback();
+                }
+            }, function(response) {
+                errorCallback(response);
+            });
+        }
+    }
+
     // Browse neos catalogue
     neoFactory.browse = function(pageIndex, successCallback, errorCallback) {
         neoFactory.pageIndex = pageIndex;
@@ -57,6 +75,50 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
                 // neoFactory.browseCatalogue.push.apply(neoFactory.browseCatalogue,response.data.near_earth_objects);
                 neoFactory.results = response.data.near_earth_objects;
                 neoFactory.page = response.data.page;
+                neoFactory.links = response.data.links;
+                successCallback();
+            } else {
+                neoFactory.results = [];
+                errorCallback();
+            }
+        }, function(response) {
+            neoFactory.results = [];
+            errorCallback(response);
+        })
+    }
+
+    // Get neo for date interval
+    neoFactory.getNeoFromDate = function(successCallback, errorCallback) {
+        // Prepare date interval
+        var date = neoFactory.selectedDate.getDate();
+        var month = neoFactory.selectedDate.getMonth() + 1;
+        var year = neoFactory.selectedDate.getFullYear();
+        var startDate = year+'-'+month+'-'+date;
+        var endDate;
+        if (neoFactory.dateOptionIndex === 1) {
+            var dateWeek = addDays(neoFactory.selectedDate, 7);
+            date = dateWeek.getDate();
+            month = dateWeek.getMonth() + 1;
+            year = dateWeek.getFullYear();
+            endDate = year+'-'+month+'-'+date;
+        } else {
+            endDate = startDate;
+        }
+
+        $log.log(startDate + '   '+endDate);
+        $http.get(neoFactory.BASE_URL+'/feed', {
+            params: {
+                start_date:startDate,
+                end_date:endDate,
+                api_key:neoFactory.API_KEY
+            }, cache:true
+        }).then(function(response) {
+            if (response.data) {
+                $log.log(response.data);
+                // We put the neo inside the results array
+                neoFactory.resultsKeys = Object.keys(response.data.near_earth_objects).sort();
+                neoFactory.results = response.data.near_earth_objects;
+                neoFactory.elementCount = response.data.element_count;
                 neoFactory.links = response.data.links;
                 successCallback();
             } else {
@@ -108,6 +170,16 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
                 }
             }
         });
+    }
+
+    neoFactory.updateDateOptionIndex = function(optionIndex) {
+        neoFactory.dateOptionIndex = optionIndex;
+    }
+
+    function addDays(date, days) {
+        var result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result;
     }
 
     return neoFactory;

@@ -1,8 +1,8 @@
 app.controller('NeoSearchController', ['$log','$scope','$location','neoFactory', function($log, $scope, $location, neoFactory) {
     
-    $scope.neoDate = new Date();
-    $scope.dataAvailable = true;
+    $scope.neoDate = neoFactory.selectedDate;
     $scope.pageIndex = neoFactory.pageIndex;
+    $scope.dateOptionIndex = neoFactory.dateOptionIndex;
     $scope.searchMethod = {
         "type": "select", 
         "name": "SearchMethod",
@@ -17,7 +17,19 @@ app.controller('NeoSearchController', ['$log','$scope','$location','neoFactory',
             $scope.stats = neoFactory.stats;
         })
     }
-    
+
+    if (neoFactory.page) {
+        $scope.page = neoFactory.page;
+    } else {
+        $scope.page = {
+            total_pages: 0
+        }
+    }
+
+    $scope.results = neoFactory.results;
+    $scope.resultsKeys = neoFactory.resultsKeys;
+    $scope.dataAvailable = neoFactory.results.length > 0 || neoFactory.resultsKeys.length > 0;
+
     $scope.searchNeoById = function() {
         // Get the search-bar to access the user input
         var id = document.getElementById("search-bar").value;
@@ -37,6 +49,15 @@ app.controller('NeoSearchController', ['$log','$scope','$location','neoFactory',
             $scope.results = neoFactory.results;
             $scope.page = neoFactory.page;
             $scope.dataAvailable = true;
+        }, errorCallback());
+    }
+
+    $scope.searchNeoFromDate = function() {
+        neoFactory.getNeoFromDate(function() {
+            $scope.results = neoFactory.results;
+            $scope.resultsKeys = neoFactory.resultsKeys;
+            $scope.dataAvailable = true;
+            $log.log($scope.resultsKeys);
         }, errorCallback());
     }
 
@@ -74,9 +95,33 @@ app.controller('NeoSearchController', ['$log','$scope','$location','neoFactory',
         neoFactory.selectedNeo = neo
     }
 
+    $scope.dateOptionUpdate = function(optionIndex) {
+            neoFactory.updateDateOptionIndex(optionIndex);
+            $log.log(optionIndex);
+            switch (optionIndex) {
+                case 0:
+                    $scope.dateOptionButtonDayClass = 'ds-button-active';
+                    $scope.dateOptionButtonWeekClass = '';
+                    break;
+                case 1:
+                    $scope.dateOptionButtonDayClass = '';
+                    $scope.dateOptionButtonWeekClass = 'ds-button-active';
+                    break;
+            }
+    }
+    $scope.dateOptionUpdate($scope.dateOptionIndex);
+
+    $scope.updateNeoDate = function() {
+        neoFactory.selectedDate = new Date($scope.neoDate);
+    }
+
     function errorCallback(error) {
         $scope.results = [];
         $scope.dataAvailable = false;
+    }
+
+    $scope.idResultsArray = function() {
+        return Object.prototype.toString.call( $scope.results ) === '[object Array]';
     }
 
     $scope.updateSearchMethod();

@@ -13,9 +13,16 @@
                     ng-model="searchMethod.value" ng-change="updateSearchMethod()">
                     </select>
                     <div ng-show="searchMethod.value === 1" style="padding:0px;margin-top:20px;">
-                        <datepicker>
-                            <input class="ds-input" ng-model="neoDate" date-format="dd-MM-yyyy" type="text"/>
-                        </datepicker>
+                        <div style="display:inline-block;">
+                            <datepicker>
+                                <input class="ds-input" ng-change="updateNeoDate()" ng-model="neoDate" date-format="dd-MM-yyyy" type="text"/>
+                            </datepicker>
+                        </div>
+                        <div style="display:inline-block;margin-top:20px;width:100%">
+                            <button ng-Class="dateOptionButtonDayClass" class="btn ds-button ds-lightest" id="dateOptionButtonDay" ng-click="dateOptionUpdate(0)">Le jour même</button>
+                            <button ng-class="dateOptionButtonWeekClass" class="btn ds-button ds-lightest" id="dateOptionButtonWeek" ng-click="dateOptionUpdate(1)">Intervalle de 7 jours</button>
+                            <button class="btn ds-lightest ds-button" ng-click="searchNeoFromDate()"><i class="material-icons">search</i></button>
+                        </div> 
                     </div>
                     <div ng-show="searchMethod.value === 2" style="padding:0px;margin-top:20px;">
                         <div class="col s11" style="padding:0px">
@@ -32,21 +39,21 @@
                     <ul class="pagination center-align">
                         <li style="padding:1px 1px;"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(0)"><i class="material-icons">first_page</i></button></li>
                         <li style="padding:1px 1px;"><button class="btn ds-button-small ds-lightest" ng-click="previousPage()"><i class="material-icons">chevron_left</i></button></li>
-                        <li style="padding:1px 1px;" ng-show="pageIndex === page.total_pages"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex-4)">{{pageIndex-3}}</button></li>
-                        <li style="padding:1px 1px;" ng-show="pageIndex >= page.total_pages - 1"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex-3)">{{pageIndex-2}}</button></li>
+                        <li style="padding:1px 1px;" ng-show="pageIndex === page.total_pages && page.total_pages !== 0"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex-4)">{{pageIndex-3}}</button></li>
+                        <li style="padding:1px 1px;" ng-show="pageIndex >= page.total_pages - 1 && page.total_pages !== 0"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex-3)">{{pageIndex-2}}</button></li>
                         <li style="padding:1px 1px;" ng-show="pageIndex > 1"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex-2)">{{pageIndex-1}}</button></li>
                         <li style="padding:1px 1px;" ng-show="pageIndex > 0"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex-1)">{{pageIndex}}</button></li>
                         <li style="padding:1px 1px;"><button class="btn ds-button-small ds-dark disabled">{{pageIndex+1}}</button></li>
-                        <li style="padding:1px 1px;" ng-show="pageIndex < page.total_pages-1"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex+1)">{{pageIndex+2}}</button></li>
-                        <li style="padding:1px 1px;" ng-show="pageIndex < page.total_pages"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex+2)">{{pageIndex+3}}</button></li>
+                        <li style="padding:1px 1px;" ng-show="pageIndex < page.total_pages-1 && page.total_pages !== 0"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex+1)">{{pageIndex+2}}</button></li>
+                        <li style="padding:1px 1px;" ng-show="pageIndex < page.total_pages && page.total_pages !== 0"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex+2)">{{pageIndex+3}}</button></li>
                         <li style="padding:1px 1px;" ng-show="pageIndex < 2"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex+3)">{{pageIndex+4}}</button></li>
                         <li style="padding:1px 1px;" ng-show="pageIndex < 1"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(pageIndex+4)">{{pageIndex+5}}</button></li>
                         <li style="padding:1px 1px;"><button class="btn ds-button-small ds-lightest" ng-click="nextPage()"><i class="material-icons">chevron_right</i></button></li>
                         <li style="padding:1px 1px;"><button class="btn ds-button-small ds-lightest" ng-click="setPageIndex(page.total_pages)" ng-disabled="pageIndex === page.total_pages - 1"><i class="material-icons">last_page</i></button></li>
                     </ul>
-                    <div ng-show="dataAvailable">
+                    <div ng-show="dataAvailable && idResultsArray()">
                         <ul class="collection">
-                            <a href="/neo/neo.neo_reference_id" class="collection-item ds-dark-text" ng-repeat="neo in results" ng-click="updateSelectedNeo(neo)">
+                            <a href="/neo/{{neo.neo_reference_id}}" class="collection-item ds-dark-text" ng-repeat="neo in results" ng-click="updateSelectedNeo(neo)">
                                 <div>{{$index+ 1 + (pageIndex * 20)}}.&nbsp;&nbsp;&nbsp;&nbsp;{{neo.name}}
                                     <div class="secondary-content">
                                         <i class="material-icons ds-dark-text">arrow_forward
@@ -56,6 +63,21 @@
                             </a>
                         </ul>
                     </div>
+                    <div ng-show="dataAvailable && !idResultsArray()">
+                        <div ng-repeat="key in resultsKeys">
+                            <p class="ds-light-text flow-text" style="font-size:medium;">{{resultsKeys[$index]}}</p>
+                            <ul class="collection">
+                                <a href="/neo/{{neo.neo_reference_id}}" class="ds-dark-text collection-item" ng-repeat="neo in results[key]" ng-click="updateSelectedNeo(neo)">
+                                    <div>{{$index+ 1}}.&nbsp;&nbsp;&nbsp;&nbsp;{{neo.name}}
+                                        <div class="secondary-content">
+                                            <i class="material-icons ds-dark-text">arrow_forward
+                                            </i>
+                                        </div>
+                                    </div>
+                                </a>
+                            </ul>
+                        </div>
+                    </div>
                     <div ng-hide="dataAvailable">
                         <p class="ds-light-text flow-text center-align" style="font-size:medium;margin-top:10px">Il n'y a pas de données disponibles qui correspondent à votre recherche</p>
                     </div>
@@ -64,11 +86,3 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('.datepicker').pickadate({
-            selectMonths: true, // Creates a dropdown to control month
-            selectYears: 100 // Creates a dropdown of 15 years to control year
-        });
-    });
-</script>

@@ -58,6 +58,10 @@ a {
   background-color: #37474f !important;
 }
 
+.ds-button-active {
+  background-color: #37474f !important;
+}
+
 .ds-button-small {
   padding:0px 5px !important;
   min-width: 51px !important;
@@ -158,11 +162,12 @@ a {
   background: url('../res/ic_arrow_drop_down_black_24px.svg') 100% / 10% no-repeat #eee;
 }
 
-ds-neo-collection-row:hover {
+.ds-neo-collection-row:hover {
   transition: background-color 0.1s !important;
   background-color: #546e7a !important;
 }
 
-ds-pagination {
+.ds-pagination {
   padding:0px !important;
 }
+
