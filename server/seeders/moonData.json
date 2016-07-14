@@ -1,0 +1,1058 @@
+[
+	//EARTH
+  [
+		{
+			"names": {
+				"fr": "La Lune",
+				"en": "The Moon"
+			},
+			"satellite_type": "major",
+			"diameter": 1728.1,
+			"axial_tilt": 6.68,
+			"mean_density": 3344,
+			"gravity": 1.62,
+			"escape_velocity": 2.38,
+			"rotation_period": 655.7,
+			"mass": 0.07346e+24,
+			"volume": 2.1968e+10,
+			"mean_temperature": -20,
+			"length_of_day":708.7,
+			"orbit": {
+				"semi_major_axis": 0.3844e+6,
+				"perihelion_distance": 0.3633e+6,
+				"aphelion_distance": 0.4055e+6,
+				"eccentricity": 0.0549,
+				"inclination": 5.145,
+				"orbital_period": 27.3217,
+				"orbital_speed": 1.0
+			}
+		}
+  ], [
+		{
+			"names": {
+				"fr": "Phobos",
+				"en": "Phobos"
+			},
+			"satellite_type": "major",
+			"diameter": 1728.1,
+			"axial_tilt": 6.68,
+			"mean_density": 3344,
+			"gravity": 1.62,
+			"escape_velocity": 2.38,
+			"rotation_period": 655.7,
+			"mass": 0.07346e+24,
+			"volume": 2.1968e+10,
+			"mean_temperature": -20,
+			"length_of_day":708.7,
+			"orbit": {
+				"semi_major_axis": 0.3844e+6,
+				"perihelion_distance": 0.3633e+6,
+				"aphelion_distance": 0.4055e+6,
+				"eccentricity": 0.0549,
+				"inclination": 5.145,
+				"orbital_period": 27.3217,
+				"orbital_speed": 1.0
+			}
+		},{
+			"names": {
+				"fr": "Phobos",
+				"en": "Phobos"
+			},
+			"satellite_type": "major",
+			"diameter": 1728.1,
+			"axial_tilt": 6.68,
+			"mean_density": 3344,
+			"gravity": 1.62,
+			"escape_velocity": 2.38,
+			"rotation_period": 655.7,
+			"mass": 0.07346e+24,
+			"volume": 2.1968e+10,
+			"mean_temperature": -20,
+			"length_of_day":708.7,
+			"orbit": {
+				"semi_major_axis": 0.3844e+6,
+				"perihelion_distance": 0.3633e+6,
+				"aphelion_distance": 0.4055e+6,
+				"eccentricity": 0.0549,
+				"inclination": 5.145,
+				"orbital_period": 27.3217,
+				"orbital_speed": 1.0
+			}
+		}
+	], [
+		{
+			"names": {
+				"fr": "Metis (JXVI, S/1979 J3)",
+				"en": "Metis (JXVI, S/1979 J3)"
+			},
+			"satellite_type": "minor",
+			"diameter": 44,
+			"orbit": {
+				"semi_major_axis": 128000,
+				"eccentricity": 0.001,
+				"inclination": 0.019,
+				"ascending_node": 138.1,
+      	"perihelion_argument": 40.7,
+				"orbital_period": 0.30
+			}
+		}, {
+			"names": {
+				"fr": "Adrastea (JXV, S/1979 J1)",
+				"en": "Adrastea (JXV, S/1979 J1)"
+			},
+			"satellite_type": "minor",
+			"diameter": 16,
+			"orbit": {
+				"semi_major_axis": 129000,
+				"eccentricity": 0.002,
+				"inclination": 0.054,
+				"ascending_node": 167.4,
+      	"perihelion_argument": 21.2,
+				"orbital_period": 0.30
+			}
+		}, {
+			"names": {
+				"fr": "Amalthea (JV)",
+				"en": "Amalthea (JV)"
+			},
+			"satellite_type": "minor",
+			"diameter": 168,
+			"orbit": {
+				"semi_major_axis": 181400,
+				"eccentricity": 0.003,
+				"inclination": 0.380,
+				"ascending_node": 112.3,
+      	"perihelion_argument": 147.8,
+				"orbital_period": 0.50
+			}
+		}, {
+			"names": {
+				"fr": "Thebe (JXIV, S/1979 J2)",
+				"en": "Thebe (JXIV, S/1979 J2)"
+			},
+			"satellite_type": "minor",
+			"diameter": 98,
+			"orbit": {
+				"semi_major_axis": 221900,
+				"eccentricity": 0.018,
+				"inclination": 1.080,
+				"ascending_node": 235.9,
+      	"perihelion_argument": 233.5,
+				"orbital_period": 0.68
+			}
+		},{
+			"names": {
+				"fr": "Io (JI)",
+				"en": "Io (JI)"
+			},
+			"satellite_type": "major",
+			"diameter": 3643,
+			"orbit": {
+				"semi_major_axis": 421800,
+				"eccentricity": 0.004,
+				"inclination": 0.036,
+				"ascending_node": 44.3,
+      	"perihelion_argument": 268.7,
+				"orbital_period": 1.77
+			}
+		},{
+			"names": {
+				"fr": "Europa (JII)",
+				"en": "Europa (JII)"
+			},
+			"satellite_type": "major",
+			"diameter": 3122,
+			"orbit": {
+				"semi_major_axis": 671100,
+				"eccentricity": 0.009,
+				"inclination": 0.466,
+				"ascending_node": 219.6,
+      	"perihelion_argument": 225.8,
+				"orbital_period": 3.55
+			}
+		},{
+			"names": {
+				"fr": "Ganymede (JIII)",
+				"en": "Ganymede (JIII)"
+			},
+			"satellite_type": "major",
+			"diameter": 5262,
+			"orbit": {
+				"semi_major_axis": 1070400,
+				"eccentricity": 0.001,
+				"inclination": 0.177,
+				"ascending_node": 65.7,
+      	"perihelion_argument": 192.3,
+				"orbital_period": 7.16
+			}
+		},{
+			"names": {
+				"fr": "Callisto (JIV)",
+				"en": "Callisto (JIV)"
+			},
+			"satellite_type": "major",
+			"diameter": 4821,
+			"orbit": {
+				"semi_major_axis": 1882700,
+				"eccentricity": 0.007,
+				"inclination": 0.192,
+				"ascending_node": 305.3,
+      	"perihelion_argument": 46.2,
+				"orbital_period": 16.69
+			}
+		},{
+			"names": {
+				"fr": "Themisto (JXVIII, S/1975 J1)",
+				"en": "Themisto (JXVIII, S/1975 J1)"
+			},
+			"satellite_type": "minor",
+			"diameter": 9,
+			"orbit": {
+				"semi_major_axis": 7507000,
+				"eccentricity": 0.242,
+				"inclination": 43.08,
+				"ascending_node": 201.5,
+      	"perihelion_argument": 240.7,
+				"orbital_period": 130.0
+			}
+		},{
+			"names": {
+				"fr": "Leda (JXIII)",
+				"en": "Leda (JXIII)"
+			},
+			"satellite_type": "minor",
+			"diameter": 18,
+			"orbit": {
+				"semi_major_axis": 11165000,
+				"eccentricity": 0.164,
+				"inclination": 27.46,
+				"ascending_node": 217.1,
+      	"perihelion_argument": 272.3,
+				"orbital_period": 240.9
+			}
+		},{
+			"names": {
+				"fr": "Himalia (JVI)",
+				"en": "Himalia (JVI)"
+			},
+			"satellite_type": "minor",
+			"diameter": 160,
+			"orbit": {
+				"semi_major_axis": 11461000,
+				"eccentricity": 0.162,
+				"inclination": 27.50,
+				"ascending_node": 57.2,
+      	"perihelion_argument": 332.0,
+				"orbital_period": 250.6
+			}
+		},{
+			"names": {
+				"fr": "Lysithea (JX)",
+				"en": "Lysithea (JX)"
+			},
+			"satellite_type": "minor",
+			"diameter": 38,
+			"orbit": {
+				"semi_major_axis": 11717000,
+				"eccentricity": 0.112,
+				"inclination": 28.30,
+				"ascending_node": 5.5,
+      	"perihelion_argument": 49.5,
+				"orbital_period": 259.2
+			}
+		},{
+			"names": {
+				"fr": "Elara (JVII)",
+				"en": "Elara (JVII)"
+			},
+			"satellite_type": "minor",
+			"diameter": 78,
+			"orbit": {
+				"semi_major_axis": 11741000,
+				"eccentricity": 0.217,
+				"inclination": 26.63,
+				"ascending_node": 109.4,
+      	"perihelion_argument": 143.6,
+				"orbital_period": 259.6
+			}
+		},{
+			"names": {
+				"fr": "Dia (JLIII, S/2000 J11)",
+				"en": "Dia (JLIII, S/2000 J11)"
+			},
+			"satellite_type": "minor",
+			"diameter": 4,
+			"orbit": {
+				"semi_major_axis": 12118000,
+				"eccentricity": 0.211,
+				"inclination": 28.23,
+				"ascending_node": 290.9,
+      	"perihelion_argument": 178.0,
+				"orbital_period": 287.0
+			}
+		},{
+			"names": {
+				"fr": "Carpo (JXLVI, S/2003 J20)",
+				"en": "Carpo (JXLVI, S/2003 J20)"
+			},
+			"satellite_type": "minor",
+			"diameter": 3,
+			"orbit": {
+				"semi_major_axis": 16989000,
+				"eccentricity": 0.430,
+				"inclination": 51.4,
+				"ascending_node": 60.9,
+      	"perihelion_argument": 90.0,
+				"orbital_period": 456.1
+			}
+		},{
+			"names": {
+				"fr": "Euporie (JXXXIV, S/2001 J10)",
+				"en": "Euporie (JXXXIV, S/2001 J10)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 19302000,
+				"eccentricity": 0.144,
+				"inclination": 145.8,
+				"ascending_node": 64.9,
+      	"perihelion_argument": 74.6,
+				"orbital_period": 550.7
+			}
+		},{
+			"names": {
+				"fr": "Orthosie (JXXXV, S/2001 J9)",
+				"en": "Orthosie (JXXXV, S/2001 J9)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 20721000,
+				"eccentricity": 0.281,
+				"inclination": 145.9,
+				"ascending_node": 223.6,
+      	"perihelion_argument": 230.5,
+				"orbital_period": 622.6
+			}
+		},{
+			"names": {
+				"fr": "Euanthe (JXXXIII, S/2001 J7)",
+				"en": "Euanthe (JXXXIII, S/2001 J7)"
+			},
+			"satellite_type": "minor",
+			"diameter": 3,
+			"orbit": {
+				"semi_major_axis": 20799000,
+				"eccentricity": 0.232,
+				"inclination": 148.9,
+				"ascending_node": 271.0,
+      	"perihelion_argument": 316.0,
+				"orbital_period": 620.6
+			}
+		},{
+			"names": {
+				"fr": "Thyone (JXXIX, S/2001 J2)",
+				"en": "Thyone (JXXIX, S/2001 J2)"
+			},
+			"satellite_type": "minor",
+			"diameter": 4,
+			"orbit": {
+				"semi_major_axis": 20940000,
+				"eccentricity": 0.229,
+				"inclination": 148.5,
+				"ascending_node": 243.0,
+      	"perihelion_argument": 89.1,
+				"orbital_period": 627.3
+			}
+		},{
+			"names": {
+				"fr": "Mneme (JXL, S/2003 J21)",
+				"en": "Mneme (JXL, S/2003 J21)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 21069000,
+				"eccentricity": 0.227,
+				"inclination": 148.6,
+				"ascending_node": 18.1,
+      	"perihelion_argument": 41.7,
+				"orbital_period": 620.0
+			}
+		},{
+			"names": {
+				"fr": "Harpalyke (JXXII, S/2000 J5)",
+				"en": "Harpalyke (JXXII, S/2000 J5)"
+			},
+			"satellite_type": "minor",
+			"diameter": 4,
+			"orbit": {
+				"semi_major_axis": 21105000,
+				"eccentricity": 0.226,
+				"inclination": 148.6,
+				"ascending_node": 40.0,
+      	"perihelion_argument": 129.9,
+				"orbital_period": 623.3
+			}
+		},{
+			"names": {
+				"fr": "Hermippe (JXXX, S/2001 J3)",
+				"en": "Hermippe (JXXX, S/2001 J3)"
+			},
+			"satellite_type": "minor",
+			"diameter": 4,
+			"orbit": {
+				"semi_major_axis": 21131000,
+				"eccentricity": 0.210,
+				"inclination": 150.7,
+				"ascending_node": 347.2,
+      	"perihelion_argument": 298.7,
+				"orbital_period": 633.9
+			}
+		},{
+			"names": {
+				"fr": "Praxidike (JXXVII, S/2000 J7)",
+				"en": "Praxidike (JXXVII, S/2000 J7)"
+			},
+			"satellite_type": "minor",
+			"diameter": 7,
+			"orbit": {
+				"semi_major_axis": 21147000,
+				"eccentricity": 0.230,
+				"inclination": 149.0,
+				"ascending_node": 285.2,
+      	"perihelion_argument": 209.7,
+				"orbital_period": 625.3
+			}
+		},{
+			"names": {
+				"fr": "Thelxinoe (XLII, S/2003 J22)",
+				"en": "Thelxinoe (XLII, S/2003 J22)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 21162000,
+				"eccentricity": 0.221,
+				"inclination": 151.4,
+				"ascending_node": 206.2,
+      	"perihelion_argument": 179.8,
+				"orbital_period": 628.1
+			}
+		},{
+			"names": {
+				"fr": "Iocaste (JXXIV, S/2000 J3)",
+				"en": "Iocaste (JXXIV, S/2000 J3)"
+			},
+			"satellite_type": "minor",
+			"diameter": 5,
+			"orbit": {
+				"semi_major_axis": 21269000,
+				"eccentricity": 0.216,
+				"inclination": 149.4,
+				"ascending_node": 271.3,
+      	"perihelion_argument": 80.0,
+				"orbital_period": 631.5
+			}
+		},{
+			"names": {
+				"fr": "Ananke (JXII)",
+				"en": "Ananke (JXII)"
+			},
+			"satellite_type": "minor",
+			"diameter": 28,
+			"orbit": {
+				"semi_major_axis": 21276000,
+				"eccentricity": 0.244,
+				"inclination": 148.9,
+				"ascending_node": 7.6,
+      	"perihelion_argument": 100.6,
+				"orbital_period": 610.5
+			}
+		},{
+			"names": {
+				"fr": "Arche (XLIII, S/2002 J1)",
+				"en": "Arche (XLIII, S/2002 J1)"
+			},
+			"satellite_type": "minor",
+			"diameter": 3,
+			"orbit": {
+				"semi_major_axis": 22931000,
+				"eccentricity": 0.259,
+				"inclination": 165.0,
+				"ascending_node": 350.7,
+      	"perihelion_argument": 161.1,
+				"orbital_period": 723.9
+			}
+		},{
+			"names": {
+				"fr": "Pasithee (JXXXVIII, S/2001 J6)",
+				"en": "Pasithee (JXXXVIII, S/2001 J6)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 23096000,
+				"eccentricity": 0.267,
+				"inclination": 165.1,
+				"ascending_node": 338.7,
+      	"perihelion_argument": 253.3,
+				"orbital_period": 719.5
+			}
+		},{
+			"names": {
+				"fr": "Herse (L, S/2003 J17)",
+				"en": "Herse (L, S/2003 J17)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 23097000,
+				"eccentricity": 0.200,
+				"inclination": 164.2,
+				"ascending_node": 329.0,
+      	"perihelion_argument": 355.7,
+				"orbital_period": 715.4
+			}
+		},{
+			"names": {
+				"fr": "Chaldene (JXXI, S/2000 J10)",
+				"en": "Chaldene (JXXI, S/2000 J10)"
+			},
+			"satellite_type": "minor",
+			"diameter": 4,
+			"orbit": {
+				"semi_major_axis": 23179000,
+				"eccentricity": 0.251,
+				"inclination": 165.2,
+				"ascending_node": 148.7,
+      	"perihelion_argument": 282.5,
+				"orbital_period": 723.8
+			}
+		},{
+			"names": {
+				"fr": "Kale (JXXXVII, S/2001 J8)",
+				"en": "Kale (JXXXVII, S/2001 J8)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 23217000,
+				"eccentricity": 0.260,
+				"inclination": 165.0,
+				"ascending_node": 56.4,
+      	"perihelion_argument": 44.4,
+				"orbital_period": 729.5
+			}
+		},{
+			"names": {
+				"fr": "Isonoe (JXXVI, S/2000 J6)",
+				"en": "Isonoe (JXXVI, S/2000 J6)"
+			},
+			"satellite_type": "minor",
+			"diameter": 4,
+			"orbit": {
+				"semi_major_axis": 23217000,
+				"eccentricity": 0.246,
+				"inclination": 165.2,
+				"ascending_node": 149.8,
+      	"perihelion_argument": 145.6,
+				"orbital_period": 725.5
+			}
+		},{
+			"names": {
+				"fr": "Aitne (JXXXI, S/2001 J11)",
+				"en": "Aitne (JXXXI, S/2001 J11)"
+			},
+			"satellite_type": "minor",
+			"diameter": 3,
+			"orbit": {
+				"semi_major_axis": 23231000,
+				"eccentricity": 0.264,
+				"inclination": 165.1,
+				"ascending_node": 24.5,
+      	"perihelion_argument": 122.2,
+				"orbital_period": 730.2
+			}
+		},{
+			"names": {
+				"fr": "Erinome (JXXV, S/2000 J4)",
+				"en": "Erinome (JXXV, S/2000 J4)"
+			},
+			"satellite_type": "minor",
+			"diameter": 3,
+			"orbit": {
+				"semi_major_axis": 23279000,
+				"eccentricity": 0.266,
+				"inclination": 164.9,
+				"ascending_node": 321.7,
+      	"perihelion_argument": 356.0,
+				"orbital_period": 728.3
+			}
+		},{
+			"names": {
+				"fr": "Taygete (JXX, S/2000 J9)",
+				"en": "Taygete (JXX, S/2000 J9)"
+			},
+			"satellite_type": "minor",
+			"diameter": 5,
+			"orbit": {
+				"semi_major_axis": 23360000,
+				"eccentricity": 0.252,
+				"inclination": 165.2,
+				"ascending_node": 313.3,
+      	"perihelion_argument": 241.1,
+				"orbital_period": 732.2
+			}
+		},{
+			"names": {
+				"fr": "Carme (JXI)",
+				"en": "Carme (JXI)"
+			},
+			"satellite_type": "minor",
+			"diameter": 46,
+			"orbit": {
+				"semi_major_axis": 23404000,
+				"eccentricity": 0.253,
+				"inclination": 164.9,
+				"ascending_node": 113.7,
+      	"perihelion_argument": 28.2,
+				"orbital_period": 702.3
+			}
+		},{
+			"names": {
+				"fr": "Kalyke (JXXIII, S/2000 J2)",
+				"en": "Kalyke (JXXIII, S/2000 J2)"
+			},
+			"satellite_type": "minor",
+			"diameter": 5,
+			"orbit": {
+				"semi_major_axis": 23583000,
+				"eccentricity": 0.245,
+				"inclination": 165.2,
+				"ascending_node": 38.7,
+      	"perihelion_argument": 216.6,
+				"orbital_period": 743.0
+			}
+		},{
+			"names": {
+				"fr": "Eukelade (XLVII, S/2003 J1)",
+				"en": "Eukelade (XLVII, S/2003 J1)"
+			},
+			"satellite_type": "minor",
+			"diameter": 4,
+			"orbit": {
+				"semi_major_axis": 23661000,
+				"eccentricity": 0.272,
+				"inclination": 165.5,
+				"ascending_node": 206.3,
+      	"perihelion_argument": 325.6,
+				"orbital_period": 746.4
+			}
+		},{
+			"names": {
+				"fr": "Kallichore (XLIV, S/2003 J11)",
+				"en": "Kallichore (XLIV, S/2003 J11)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 24043000,
+				"eccentricity": 0.264,
+				"inclination": 165.5,
+				"ascending_node": 41.5,
+      	"perihelion_argument": 18.5,
+				"orbital_period": 764.7
+			}
+		},{
+			"names": {
+				"fr": "Helike (XLV, S/2003 J6)",
+				"en": "Helike (XLV, S/2003 J6)"
+			},
+			"satellite_type": "minor",
+			"diameter": 4,
+			"orbit": {
+				"semi_major_axis": 21263000,
+				"eccentricity": 0.156,
+				"inclination": 154.8,
+				"ascending_node": 100.3,
+      	"perihelion_argument": 314.7,
+				"orbital_period": 634.8
+			}
+		},{
+			"names": {
+				"fr": "Eurydome (JXXXII, S/2001 J4)",
+				"en": "Eurydome (JXXXII, S/2001 J4)"
+			},
+			"satellite_type": "minor",
+			"diameter": 3,
+			"orbit": {
+				"semi_major_axis": 22865000,
+				"eccentricity": 0.276,
+				"inclination": 150.3,
+				"ascending_node": 307.4,
+      	"perihelion_argument": 241.6,
+				"orbital_period": 717.3
+			}
+		},{
+			"names": {
+				"fr": "Autonoe JXXVIII, S/2001 J1)",
+				"en": "Autonoe JXXVIII, S/2001 J1)"
+			},
+			"satellite_type": "minor",
+			"diameter": 4,
+			"orbit": {
+				"semi_major_axis": 23039000,
+				"eccentricity": 0.334,
+				"inclination": 152.9,
+				"ascending_node": 275.6,
+      	"perihelion_argument": 60.2,
+				"orbital_period": 762.7
+			}
+		},{
+			"names": {
+				"fr": "Sponde (JXXXVI, S/2001 J5)",
+				"en": "Sponde (JXXXVI, S/2001 J5)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 23487000,
+				"eccentricity": 0.312,
+				"inclination": 151.0,
+				"ascending_node": 129.1,
+      	"perihelion_argument": 79.1,
+				"orbital_period": 748.3
+			}
+		},{
+			"names": {
+				"fr": "Pasiphae (JVIII)",
+				"en": "Pasiphae (JVIII)"
+			},
+			"satellite_type": "minor",
+			"diameter": 58,
+			"orbit": {
+				"semi_major_axis": 23624000,
+				"eccentricity": 0.409,
+				"inclination": 151.4,
+				"ascending_node": 313.0,
+      	"perihelion_argument": 170.5,
+				"orbital_period": 708.0
+			}
+		},{
+			"names": {
+				"fr": "Megaclite (JXIX, S/2000 J8)",
+				"en": "Megaclite (JXIX, S/2000 J8)"
+			},
+			"satellite_type": "minor",
+			"diameter": 6,
+			"orbit": {
+				"semi_major_axis": 23806000,
+				"eccentricity": 0.421,
+				"inclination": 152.8,
+				"ascending_node": 304.6,
+      	"perihelion_argument": 302.3,
+				"orbital_period": 752.8
+			}
+		},{
+			"names": {
+				"fr": "Sinope (JIX)",
+				"en": "Sinope (JIX)"
+			},
+			"satellite_type": "minor",
+			"diameter": 38,
+			"orbit": {
+				"semi_major_axis": 23939000,
+				"eccentricity": 0.250,
+				"inclination": 158.1,
+				"ascending_node": 303.1,
+      	"perihelion_argument": 346.4,
+				"orbital_period": 724.5
+			}
+		},{
+			"names": {
+				"fr": "Hegemone (JXXXIX, S/2003 J8)",
+				"en": "Hegemone (JXXXIX, S/2003 J8)"
+			},
+			"satellite_type": "minor",
+			"diameter": 3,
+			"orbit": {
+				"semi_major_axis": 23947000,
+				"eccentricity": 0.328,
+				"inclination": 155.2,
+				"ascending_node": 327.6,
+      	"perihelion_argument": 235.4,
+				"orbital_period": 739.6
+			}
+		},{
+			"names": {
+				"fr": "Aoede (XLI, S/2003 J7)",
+				"en": "Aoede (XLI, S/2003 J7)"
+			},
+			"satellite_type": "minor",
+			"diameter": 4,
+			"orbit": {
+				"semi_major_axis": 23981000,
+				"eccentricity": 0.432,
+				"inclination": 158.3,
+				"ascending_node": 187.1,
+      	"perihelion_argument": 74.5,
+				"orbital_period": 761.5
+			}
+		},{
+			"names": {
+				"fr": "Callirrhoe (JXVII, S/1999 J1)",
+				"en": "Callirrhoe (JXVII, S/1999 J1)"
+			},
+			"satellite_type": "minor",
+			"diameter": 7,
+			"orbit": {
+				"semi_major_axis": 24102000,
+				"eccentricity": 0.283,
+				"inclination": 147.1,
+				"ascending_node": 281.1,
+      	"perihelion_argument": 49.3,
+				"orbital_period": 758.8
+			}
+		},{
+			"names": {
+				"fr": "Cyllene (XLVIII, S/2003 J13)",
+				"en": "Cyllene (XLVIII, S/2003 J13)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 24349000,
+				"eccentricity": 0.319,
+				"inclination": 149.3,
+				"ascending_node": 266.4,
+      	"perihelion_argument": 214.0,
+				"orbital_period": 737.8
+			}
+		},{
+			"names": {
+				"fr": "Kore (XLIX, S/2003 J14)",
+				"en": "Kore (XLIX, S/2003 J14)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 24543000,
+				"eccentricity": 0.325,
+				"inclination": 145.0,
+				"ascending_node": 324.7,
+      	"perihelion_argument": 152.4,
+				"orbital_period": 779.2
+			}
+		},{
+			"names": {
+				"fr": "(S/2003 J2)",
+				"en": "(S/2003 J2)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 28570410,
+				"eccentricity": 0.380,
+				"inclination": 151.8,
+				"orbital_period": 982.5
+			}
+		},{
+			"names": {
+				"fr": "(S/2003 J3)",
+				"en": "(S/2003 J3)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 28570410,
+				"eccentricity": 0.241,
+				"inclination": 143.7,
+				"orbital_period": 504.0
+			}
+		},{
+			"names": {
+				"fr": "(S/2003 J4)",
+				"en": "(S/2003 J4)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 23257920,
+				"eccentricity": 0.204,
+				"inclination": 144.9,
+				"orbital_period": 723.2
+			}
+		},{
+			"names": {
+				"fr": "(S/2003 J5)",
+				"en": "(S/2003 J5)"
+			},
+			"satellite_type": "minor",
+			"diameter": 4,
+			"orbit": {
+				"semi_major_axis": 24084180,
+				"eccentricity": 0.210,
+				"inclination": 165.0,
+				"orbital_period": 759.7
+			}
+		},{
+			"names": {
+				"fr": "(S/2003 J9)",
+				"en": "(S/2003 J9)"
+			},
+			"satellite_type": "minor",
+			"diameter": 1,
+			"orbit": {
+				"semi_major_axis": 22441680,
+				"eccentricity": 0.269,
+				"inclination": 164.5,
+				"orbital_period": 683.0
+			}
+		},{
+			"names": {
+				"fr": "(S/2003 J10)",
+				"en": "(S/2003 J10)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 24249600,
+				"eccentricity": 0.214,
+				"inclination": 164.1,
+				"orbital_period": 767.0
+			}
+		},{
+			"names": {
+				"fr": "(S/2003 J12)",
+				"en": "(S/2003 J12)"
+			},
+			"satellite_type": "minor",
+			"diameter": 1,
+			"orbit": {
+				"semi_major_axis": 19002480,
+				"eccentricity": 0.376,
+				"inclination": 145.8,
+				"orbital_period": 533.3
+			}
+		},{
+			"names": {
+				"fr": "(S/2003 J15)",
+				"en": "(S/2003 J15)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 22000000,
+				"eccentricity": 0.110,
+				"inclination": 140.8,
+				"orbital_period": 668.4
+			}
+		},{
+			"names": {
+				"fr": "(S/2003 J16)",
+				"en": "(S/2003 J16)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 21000000,
+				"eccentricity": 0.270,
+				"inclination": 148.6,
+				"orbital_period": 595.4
+			}
+		},{
+			"names": {
+				"fr": "(S/2003 J18)",
+				"en": "(S/2003 J18)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 20700000,
+				"eccentricity": 0.119,
+				"inclination": 146.5,
+				"orbital_period": 606.3
+			}
+		},{
+			"names": {
+				"fr": "(S/2003 J19)",
+				"en": "(S/2003 J19)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 22800000,
+				"eccentricity": 0.334,
+				"inclination": 162.9,
+				"orbital_period": 701.3
+			}
+		},{
+			"names": {
+				"fr": "(S/2003 J23)",
+				"en": "(S/2003 J23)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 24055500,
+				"eccentricity": 0.309,
+				"inclination": 149.2,
+				"orbital_period": 759.7
+			}
+		},{
+			"names": {
+				"fr": "(JLI, S/2010 J1)",
+				"en": "(JLI, S/2010 J1)"
+			},
+			"satellite_type": "minor",
+			"diameter": 2,
+			"orbit": {
+				"semi_major_axis": 23314335,
+				"eccentricity": 0.320,
+				"inclination": 163.2,
+				"orbital_period": 723.2
+			}
+		},{
+			"names": {
+				"fr": "(JLII, S/2010 J2)",
+				"en": "(JLII, S/2010 J2)"
+			},
+			"satellite_type": "minor",
+			"diameter": 1,
+			"orbit": {
+				"semi_major_axis": 20307150,
+				"eccentricity": 0.307,
+				"inclination": 150.4,
+				"orbital_period": 588.1
+			}
+		},{
+			"names": {
+				"fr": "(S/2011 J1)",
+				"en": "(S/2011 J1)"
+			},
+			"satellite_type": "minor",
+			"diameter": 1,
+			"orbit": {
+				"semi_major_axis": 20155290,
+				"eccentricity": 0.296,
+				"inclination": 162.8,
+				"orbital_period": 580.7
+			}
+		},{
+			"names": {
+				"fr": "(S/2011 J2)",
+				"en": "(S/2011 J2)"
+			},
+			"satellite_type": "minor",
+			"diameter": 1,
+			"orbit": {
+				"semi_major_axis": 23329710,
+				"eccentricity": 0.387,
+				"inclination": 151.9,
+				"orbital_period": 726.8
+			}
+		}
+	]
+]
