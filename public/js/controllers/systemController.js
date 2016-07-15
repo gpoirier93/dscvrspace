@@ -1,9 +1,6 @@
-app.controller('SystemController', ['$scope', '$rootScope', '$log', 'system', 'sceneFactory','orbitModellerService', function($scope, $rootScope, $log, system, sceneFactory, orbitModellerService) {
-    // Define distance divider
-    $rootScope.dd = 1000000;
+app.controller('SystemController', ['$scope', '$rootScope', '$log', 'system', 'sceneFactory','sceneFactoryHelper', function($scope, $rootScope, $log, system, sceneFactory, sceneFactoryHelper) {
     //Define bars height
     $rootScope.bh = 128;
-
     // Subscribe to locationChangeStart event to save exit state of the scene
     $scope.$on('$locationChangeStart', function(event) {
         saveSceneState();
@@ -11,57 +8,8 @@ app.controller('SystemController', ['$scope', '$rootScope', '$log', 'system', 's
 
     // If there was no previous state, init scene and camera
     if (!sceneFactory.isDefined) {
-        var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / (window.innerHeight - $rootScope.bh), 0.1, 500000 );
-
-        bulbLight = new THREE.PointLight( 0xFFFFF, 500, 10000, 200 );
-        bulbMat = new THREE.MeshStandardMaterial( {
-            emissive: 0xffffee,
-            emissiveIntensity: 1,
-            color: 0x000000
-        });
-        bulbLight.position.set( 0, 0, 0 );
-        bulbLight.castShadow = true;
-        scene.add( bulbLight );
-
-        center = orbitModellerService.modelBody(system.body);
-        scene.add( center );
-
-        system.planets.forEach(function(planet) {
-            var orbit = orbitModellerService.modelOrbit(planet.body.orbit);
-            scene.add(orbit);
-        });
-        
-        camera.position.z = 100;
-
-        // Add axis
-        var material = new THREE.LineDashedMaterial({color: 0x0000ff});
-        var geometry = new THREE.Geometry();
-        geometry.vertices.push(
-            new THREE.Vector3( 0, 0, 0 ),
-            new THREE.Vector3( 10000, 0, 0 )
-        );
-        scene.add ( new THREE.Line(geometry, material));
-
-        material = new THREE.LineDashedMaterial({color: 0x00ff00});
-        geometry = new THREE.Geometry();
-        geometry.vertices.push(
-            new THREE.Vector3( 0, 0, 0 ),
-            new THREE.Vector3( 0, 10000, 0 )
-        );
-        scene.add ( new THREE.Line(geometry, material));
-
-        material = new THREE.LineDashedMaterial({color: 0xff0000});
-        geometry = new THREE.Geometry();
-        geometry.vertices.push(
-            new THREE.Vector3( 0, 0, 0 ),
-            new THREE.Vector3( 0, 0, 10000 )
-        );
-        scene.add ( new THREE.Line(geometry, material));
-
-        // Add newly created entity to scene factory
-        sceneFactory.scene = scene;
-        sceneFactory.camera = camera;
+        sceneFactory.scene = sceneFactoryHelper.initScene(system, true)
+        sceneFactory.camera = sceneFactoryHelper.initCamera(window.innerWidth, window.innerHeight - $rootScope.bh, 100);
     }
 
     // Remove existing canvas if there is one
@@ -71,7 +19,7 @@ app.controller('SystemController', ['$scope', '$rootScope', '$log', 'system', 's
     }
 
     // Update camera aspect
-    sceneFactory.camera.aspect = window.innerWidth/(window.innerHeight - $rootScope.bh);
+    sceneFactory.camera.aspect = window.innerWidth / (window.innerHeight - $rootScope.bh);
     sceneFactory.camera.updateProjectionMatrix();
 
     // Create renderer 
@@ -104,8 +52,8 @@ app.controller('SystemController', ['$scope', '$rootScope', '$log', 'system', 's
     }
 
     function onWindowResize(e){
-        camera.aspect = window.innerWidth / (window.innerHeight - $rootScope.bh);
-        camera.updateProjectionMatrix();
+        sceneFactory.camera.aspect = window.innerWidth / (window.innerHeight - $rootScope.bh);
+        sceneFactory.camera.updateProjectionMatrix();
 
         renderer.setSize( window.innerWidth, (window.innerHeight - $rootScope.bh) );
     }
