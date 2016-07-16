@@ -13,8 +13,24 @@ app.set('views', __dirname + '/public/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  response.render('index.ejs');
+  response.render('index.ejs', {location:'home'});
 });
+
+app.get('/solarSystem', function(request, response) {
+  response.render('index.ejs', {location:'solarSystem'});
+})
+
+app.get('/neo', function(request, response) {
+  response.render('index.ejs', {location:'neo'});
+})
+
+app.get('/neo/:id', function(request, response) {
+  response.render('index.ejs', {location:'neo/'+request.params.id});
+})
+
+app.get('/about', function(request, response) {
+  response.render('index.ejs', {location:'about'});
+})
 
 app.use('/api', apiRouter.getApiRouter(app));
 

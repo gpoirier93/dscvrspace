@@ -22,6 +22,9 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   }).when('/neo/:id', {
     templateUrl:'/views/neoDetails.ejs',
     controller:'NeoDetailsController'
+  }).when('/error', {
+    templateUrl:'/views/error.ejs',
+    controller:'ErrorController',
   }).otherwise('/');
 
   $locationProvider.html5Mode({
@@ -30,18 +33,25 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   });
 }]);
 
-app.controller('mainController', function($scope) {
-  $scope.message = 'Main page';
-});
+app.controller('mainController', ['$scope', '$location', '$log','neoFactory', function($scope, $location, $log, neoFactory) {
+  $scope.$watch('requestedLocation', function () {
+    $log.log($scope.requestedLocation);
+    if ($scope.requestedLocation !== 'home') {
+      $location.path('/'+$scope.requestedLocation);
+    } else {
+      $location.path('/');
+    }
+  });
+}]);
 
-app.controller('homeController', function($scope) {
-  $scope.message = 'Home Page';
-});
+app.controller('homeController', ['$scope', '$location', '$log', function($scope, $location, $log) {
+  
+}]);
 
 app.controller('aboutController', function($scope){
 
 });
 
-app.controller('detailController', function($scope) {
-  $scope.message = 'Detail Page';
-});
+app.controller('ErrorController', ['$scope', '$location', '$log', function($scope, $location, $log) {
+
+}]);

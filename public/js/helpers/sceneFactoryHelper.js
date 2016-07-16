@@ -4,18 +4,22 @@ app.service('sceneFactoryHelper', ['$rootScope', '$log','orbitModellerService', 
     service.initScene = function(system, hasAxis) {
         var scene = new THREE.Scene();
 
-        bulbLight = new THREE.PointLight( 0xFFFFF, 500, 10000, 200 );
-        bulbMat = new THREE.MeshStandardMaterial( {
-            emissive: 0xffffee,
-            emissiveIntensity: 1,
-            color: 0x000000
-        });
-        bulbLight.position.set( 0, 0, 0 );
-        bulbLight.castShadow = true;
-        scene.add( bulbLight );
+        // bulbLight = new THREE.PointLight( 0xFFFFF, 500, 10000 );
+        // bulbMat = new THREE.MeshLambertMaterial( {
+        //     emissive: 0xffffee,
+        //     emissiveIntensity: 1,
+        //     color: 0x000000
+        // });
+        // bulbLight.position.set( 0, 0, 0 );
+        // bulbLight.castShadow = true;
+        // scene.add( bulbLight );
+        var light = new THREE.PointLight( 0xff0000, 500, 10000 );
+        light.position.set( 0, 0, 0 );
+        scene.add( light )
 
         center = orbitModellerService.modelBody(system.body);
         scene.add( center );
+        // lights
 
         if (system.planets) {
             system.planets.forEach(function(planet) {
@@ -60,8 +64,12 @@ app.service('sceneFactoryHelper', ['$rootScope', '$log','orbitModellerService', 
     }
 
     service.initCamera = function(sceneWidth, sceneHeight, position) {
-        var camera = new THREE.PerspectiveCamera( 75, sceneWidth / sceneHeight, 0.1, 500000 );
+        var camera = new THREE.PerspectiveCamera( 45, sceneWidth / sceneHeight, 0.1, 500000 );
+        camera.up = new THREE.Vector3(0,0,1);
         camera.position.z = position;
+        camera.position.x = position;
+        camera.position.y = position;
+        camera.updateProjectionMatrix();
         return camera;
     }
 

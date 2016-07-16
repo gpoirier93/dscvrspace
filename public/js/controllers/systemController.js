@@ -9,7 +9,7 @@ app.controller('SystemController', ['$scope', '$rootScope', '$log', 'system', 's
     // If there was no previous state, init scene and camera
     if (!sceneFactory.isDefined) {
         sceneFactory.scene = sceneFactoryHelper.initScene(system, true)
-        sceneFactory.camera = sceneFactoryHelper.initCamera(window.innerWidth, window.innerHeight - $rootScope.bh, 100);
+        sceneFactory.camera = sceneFactoryHelper.initCamera(window.innerWidth, window.innerHeight - $rootScope.bh, 1000);
     }
 
     // Remove existing canvas if there is one
@@ -37,7 +37,7 @@ app.controller('SystemController', ['$scope', '$rootScope', '$log', 'system', 's
     } else {
         orbitControls.target.set( 0, 0, 0 );
     }
-    orbitControls.maxDistance = 10000;
+    orbitControls.maxDistance = 15000;
     orbitControls.update();
 
     // Add window listeners
@@ -45,6 +45,19 @@ app.controller('SystemController', ['$scope', '$rootScope', '$log', 'system', 's
 
     // Render
     render();
+
+    // Orbit Controls
+    // $scope.zoomIn = function() {
+    //     $log.log(sceneFactory.camera.zoom);
+    //     sceneFactory.camera.zoom += 1;
+    //     sceneFactory.camera.updateProjectionMatrix();
+    // }
+
+    // $scope.zoomOut = function() {
+    //     $log.log(sceneFactory.camera.zoom);
+    //     sceneFactory.camera.zoom -= 1;
+    //     sceneFactory.camera.updateProjectionMatrix();
+    // }
 
     function render() {
         requestAnimationFrame( render );

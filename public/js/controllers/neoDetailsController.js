@@ -1,28 +1,39 @@
-app.controller('NeoDetailsController', ['$scope', '$log','neoFactory','sceneFactoryHelper','systemService','orbitModellerService', function($scope, $log, neoFactory, sceneFactoryHelper, systemService, orbitModellerService) {
-    $scope.neo = neoFactory.selectedNeo;
+app.controller('NeoDetailsController', ['$scope', '$log','$location','neoFactory','sceneFactoryHelper','systemService','orbitModellerService','$routeParams', function($scope, $log,$location, neoFactory, sceneFactoryHelper, systemService, orbitModellerService, $routeParams) {
+    if (neoFactory.selectedNeo) {
+        $scope.neo = neoFactory.selectedNeo;
 
-    if ($scope.neo.orbital_data) {
-        $scope.orbit_determination_date = new Date($scope.neo.orbital_data.orbit_determination_date);
-        $scope.orbit = $scope.neo.orbital_data;
-        initScene();
+        if ($scope.neo.orbital_data) {
+            $scope.orbit_determination_date = new Date($scope.neo.orbital_data.orbit_determination_date);
+            $scope.orbit = $scope.neo.orbital_data;
+            initScene();
+        } else {
+            neoFactory.getNeoOrbitalData($scope.neo.neo_reference_id, function() {
+                $scope.orbit_determination_date = new Date(neoFactory.selectedNeo.orbital_data.orbit_determination_date);
+                $scope.orbit = neoFactory.selectedNeo.orbital_data;
+                initScene(); 
+            }, function() {
+                // do nothing
+            })
+        }
     } else {
-        neoFactory.getNeoOrbitalData($scope.neo.neo_reference_id, function() {
-            $scope.orbit_determination_date = new Date(neoFactory.selectedNeo.orbital_data.orbit_determination_date);
-            $scope.orbit = neoFactory.selectedNeo.orbital_data;
-            initScene(); 
+        neoFactory.getNeoById($routeParams.id, function() {
+            neoFactory.selectedNeo = neoFactory.results[0];
+            $scope.neo = neoFactory.selectedNeo;
+            $scope.orbit_determination_date = new Date($scope.neo.orbital_data.orbit_determination_date);
+            $scope.orbit = $scope.neo.orbital_data;
+            initScene();
         }, function() {
-            // do nothing
+            $location.path('/error')
         })
     }
-
     function initScene() {
         systemService.getSolarSystem(function(system) {
-            var sceneWidth = 800
-            var sceneHeight = 800 * 9 / 16
+            var sceneWidth  = document.getElementById('orbital-data-table').offsetWidth;
+            var sceneHeight = sceneWidth * 9 / 16
 
             // get scene and camera objects
             var scene = sceneFactoryHelper.initScene(system, true);
-            var camera = sceneFactoryHelper.initCamera(sceneWidth, sceneHeight, 100)
+            var camera = sceneFactoryHelper.initCamera(sceneWidth, sceneHeight, 1000)
 
             // Add NEO orbit
             var orbitalData = $scope.orbit;

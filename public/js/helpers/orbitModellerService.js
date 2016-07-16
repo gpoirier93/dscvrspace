@@ -27,7 +27,7 @@ app.service('orbitModellerService', ['$rootScope','$log', function($rootScope, $
         var rotationZ = (orbit.perihelion_argument * 2 * Math.PI) / 360;
 
         // $log.log(orbit);
-        $log.log(transalationX + '     '+rotationX+'     '+rotationY+'     '+rotationZ);
+        // $log.log(transalationX + '     '+rotationX+'     '+rotationY+'     '+rotationZ);
 
         orbitLine.translateX(transalationX);
         orbitLine.rotateY(rotationY);
@@ -41,7 +41,7 @@ app.service('orbitModellerService', ['$rootScope','$log', function($rootScope, $
 
     this.modelBody = function(body) {
         var geometry = new THREE.SphereGeometry( body.diameter/2/$rootScope.dd, 32, 32 );
-        var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+        var material = new THREE.MeshLambertMaterial( {color: 0xffff00} );
         return new THREE.Mesh( geometry, material );
     }
 
