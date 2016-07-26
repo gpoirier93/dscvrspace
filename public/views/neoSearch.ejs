@@ -7,7 +7,7 @@
                         <h3 class="ds-light-text">Rechercher des astéroïdes</h3>
                         <p class="ds-light-text flow-text" style="font-size:medium;">Cet engin de recherche permet d'accéder au jeu de données de l'équipe des Near-earth objects ( NEO ) du Jet Propulsion Laboratory ( JPL ) recensant les différents astéroïdes du système solaire.</p>
                         <p class="ds-light-text flow-text" style="font-size:small;">Nombre d'astéroïdes accessibles : {{stats.near_earth_object_count}}</p>
-                        <p class="ds-light-text flow-text" style="font-size:small;">Date de la dernière mise à jour : {{stats.last_updated | date : "dd-MM-yyyy"}}</p>
+                        <p class="ds-light-text flow-text" style="font-size:small;">Date de la dernière mise à jour : {{stats.last_updated | date : "dd MMMM yyyy"}}</p>
                     </div> 
                     <select class="ds-select" ng-options="v.value as v.title for v in searchMethod.values"
                     ng-model="searchMethod.value" ng-change="updateSearchMethod()">
@@ -15,7 +15,7 @@
                     <div ng-show="searchMethod.value === 1" style="padding:0px;margin-top:20px;">
                         <div style="display:inline-block;">
                             <datepicker>
-                                <input class="ds-input" ng-change="updateNeoDate()" ng-model="neoDate" date-format="dd-MM-yyyy" type="text"/>
+                                <input class="ds-input" ng-change="updateNeoDate()" ng-model="neoDate" type="text"/>
                             </datepicker>
                         </div>
                         <div style="display:inline-block;margin-top:20px;width:100%">

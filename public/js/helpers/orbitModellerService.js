@@ -6,11 +6,11 @@ app.service('orbitModellerService', ['$rootScope','$log', function($rootScope, $
         var bigAxis = orbit.semi_major_axis/$rootScope.dd;
         var smallAxis = orbit.semi_major_axis * Math.sqrt((orbit.eccentricity * orbit.eccentricity)+1)/$rootScope.dd;
         var curve = new THREE.EllipseCurve(
-            0,  0,            // ax, aY
-            bigAxis, smallAxis,           // xRadius, yRadius
-            0,  2 * Math.PI,  // aStartAngle, aEndAngle
-            false,            // aClockwise
-            0                 // aRotation 
+            0,  0,
+            bigAxis, smallAxis,
+            0,  2 * Math.PI,  
+            false,            
+            0                 
         );
 
         var path = new THREE.Path( curve.getPoints( 200 ) );
@@ -26,23 +26,12 @@ app.service('orbitModellerService', ['$rootScope','$log', function($rootScope, $
         var rotationY = (orbit.inclination * 2 * Math.PI) / 360;
         var rotationZ = (orbit.perihelion_argument * 2 * Math.PI) / 360;
 
-        // $log.log(orbit);
-        // $log.log(transalationX + '     '+rotationX+'     '+rotationY+'     '+rotationZ);
-
         orbitLine.translateX(transalationX);
         orbitLine.rotateY(rotationY);
         orbitLine.rotateZ(rotationZ);
         orbitLine.rotateZ(rotationX)
-        // orbitLine.rotateX(rotationX);
-        // orbit.matrixWorldNeedsUpdate = true;
 
         return orbitLine;
-    }
-
-    this.modelBody = function(body) {
-        var geometry = new THREE.SphereGeometry( body.diameter/2/$rootScope.dd, 32, 32 );
-        var material = new THREE.MeshLambertMaterial( {color: 0xffff00} );
-        return new THREE.Mesh( geometry, material );
     }
 
     this.modelOrbitWithParameters = function(bigAxis, eccentricity, ascendingNode, inclination, perihelionArgument) {
@@ -54,4 +43,14 @@ app.service('orbitModellerService', ['$rootScope','$log', function($rootScope, $
             perihelion_argument: perihelionArgument
         }, 0xFF0000)
     } 
+
+    this.modelBody = function(body) {
+        var geometry = new THREE.SphereGeometry( body.diameter/2/$rootScope.dd, 32, 32 );
+        var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+        return new THREE.Mesh( geometry, material );
+    }
+
+    this.modelBodyWithKeplerianEquation = function(orbit, ellipse) {
+        
+    }
 }]);

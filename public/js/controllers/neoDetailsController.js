@@ -1,16 +1,10 @@
 app.controller('NeoDetailsController', ['$scope', '$log','$location','neoFactory','sceneFactoryHelper','systemService','orbitModellerService','$routeParams', function($scope, $log,$location, neoFactory, sceneFactoryHelper, systemService, orbitModellerService, $routeParams) {
     if (neoFactory.selectedNeo) {
-        $scope.neo = neoFactory.selectedNeo;
-
-        if ($scope.neo.orbital_data) {
-            $scope.orbit_determination_date = new Date($scope.neo.orbital_data.orbit_determination_date);
-            $scope.orbit = $scope.neo.orbital_data;
-            initScene();
+        if (neoFactory.selectedNeo.orbital_data && neoFactory.selectedNeo.close_approach_data) {
+            init();
         } else {
-            neoFactory.getNeoOrbitalData($scope.neo.neo_reference_id, function() {
-                $scope.orbit_determination_date = new Date(neoFactory.selectedNeo.orbital_data.orbit_determination_date);
-                $scope.orbit = neoFactory.selectedNeo.orbital_data;
-                initScene(); 
+            neoFactory.getNeoOrbitalData(neoFactory.selectedNeo.neo_reference_id, function() {
+                init();
             }, function() {
                 // do nothing
             })
@@ -18,14 +12,20 @@ app.controller('NeoDetailsController', ['$scope', '$log','$location','neoFactory
     } else {
         neoFactory.getNeoById($routeParams.id, function() {
             neoFactory.selectedNeo = neoFactory.results[0];
-            $scope.neo = neoFactory.selectedNeo;
-            $scope.orbit_determination_date = new Date($scope.neo.orbital_data.orbit_determination_date);
-            $scope.orbit = $scope.neo.orbital_data;
-            initScene();
+            init();
         }, function() {
             $location.path('/error')
         })
     }
+
+    function init() {
+        $scope.neo = neoFactory.selectedNeo;
+        $scope.orbit_determination_date = new Date($scope.neo.orbital_data.orbit_determination_date);
+        $scope.orbit = $scope.neo.orbital_data;
+        $scope.close_approaches = $scope.neo.close_approach_data;
+        initScene();
+    }
+
     function initScene() {
         systemService.getSolarSystem(function(system) {
             var sceneWidth  = document.getElementById('orbital-data-table').offsetWidth;
@@ -66,5 +66,4 @@ app.controller('NeoDetailsController', ['$scope', '$log','$location','neoFactory
             // do something;
         });
     } 
-
 }]);

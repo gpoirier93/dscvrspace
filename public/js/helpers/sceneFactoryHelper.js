@@ -19,7 +19,6 @@ app.service('sceneFactoryHelper', ['$rootScope', '$log','orbitModellerService', 
 
         center = orbitModellerService.modelBody(system.body);
         scene.add( center );
-        // lights
 
         if (system.planets) {
             system.planets.forEach(function(planet) {

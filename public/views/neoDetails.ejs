@@ -38,7 +38,7 @@
             </div>
             <div class="row ds-info-detail-row">
                 <div class="col s12">
-                    <h5>Magnitude absolue (H)</h5>
+                    <h5><a class="ds-link" target="_blank" href="http://neo.jpl.nasa.gov/glossary/h.html">Magnitude absolue (H)<i class="material-icons tiny" style="vertical-align:top;">open_in_new</i></a></h5>
                     <p>{{neo.absolute_magnitude_h}}</p>
                     </br>
                     <h5>Diamètre estimé</h5>
@@ -55,17 +55,17 @@
                         <tbody>
                             <tr>    
                                 <th scope="row" class="title">MIN</th>
-                                <td>{{neo.estimated_diameter.kilometers.estimated_diameter_min}}</td>
-                                <td>{{neo.estimated_diameter.meters.estimated_diameter_min}}</td>
-                                <td>{{neo.estimated_diameter.miles.estimated_diameter_min}}</td>
-                                <td>{{neo.estimated_diameter.feet.estimated_diameter_min}}</td>
+                                <td>{{neo.estimated_diameter.kilometers.estimated_diameter_min | number : 10}}</td>
+                                <td>{{neo.estimated_diameter.meters.estimated_diameter_min  | number : 10}}</td>
+                                <td>{{neo.estimated_diameter.miles.estimated_diameter_min  | number : 10}}</td>
+                                <td>{{neo.estimated_diameter.feet.estimated_diameter_min  | number : 10}}</td>
                             </tr>
                             <tr class="last">
                                 <th scope="row" class="title">MAX</th>
-                                <td>{{neo.estimated_diameter.kilometers.estimated_diameter_max}}</td>
-                                <td>{{neo.estimated_diameter.meters.estimated_diameter_max}}</td>
-                                <td>{{neo.estimated_diameter.miles.estimated_diameter_max}}</td>
-                                <td>{{neo.estimated_diameter.feet.estimated_diameter_max}}</td>
+                                <td>{{neo.estimated_diameter.kilometers.estimated_diameter_max  | number : 10}}</td>
+                                <td>{{neo.estimated_diameter.meters.estimated_diameter_max  | number : 10}}</td>
+                                <td>{{neo.estimated_diameter.miles.estimated_diameter_max  | number : 10}}</td>
+                                <td>{{neo.estimated_diameter.feet.estimated_diameter_max  | number : 10}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -87,7 +87,7 @@
                 <div class="col s12">
                     <div class="row">
                         <div class="col s12">
-                            <div class="row">
+                            <div class="row" style="margin-bottom:0px;">
                                 <div class="col s12">
                                     <table id="orbital-data-table" class="ds-table-light" style="margin-top:10px;">
                                         <thead>
@@ -99,55 +99,55 @@
                                         <tbody>
                                             <tr>
                                                 <td>Distance minimale d'intersection avec la Terre (ua)</td>
-                                                <td>{{ orbit.minimum_orbit_intersection }}</td>
+                                                <td>{{ orbit.minimum_orbit_intersection  | number : 6}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Excentricité</td>
-                                                <td>{{ orbit.eccentricity}}</td>
+                                                <td>{{ orbit.eccentricity  | number : 10}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Axe semi majeur (ua)</td>
-                                                <td>{{ orbit.semi_major_axis}}</td>
+                                                <td>{{ orbit.semi_major_axis  | number : 10}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Distance du périhélie (ua)</td>
-                                                <td>{{ orbit.perihelion_distance}}</td>
+                                                <td>{{ orbit.perihelion_distance  | number : 10}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Distance de l'aphélie (ua)</td>
-                                                <td>{{ orbit.aphelion_distance}}</td>
+                                                <td>{{ orbit.aphelion_distance  | number : 10}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Inclinaison (°)</td>
-                                                <td>{{ orbit.inclination}}</td>
+                                                <td>{{ orbit.inclination  | number : 10}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Argument du périhélie (°)</td>
-                                                <td>{{ orbit.perihelion_argument}}</td>
+                                                <td>{{ orbit.perihelion_argument  | number : 10}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Longitude du noeud ascendant (°)</td>
-                                                <td>{{ orbit.ascending_node_longitude}}</td>
+                                                <td>{{ orbit.ascending_node_longitude  | number : 10}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Période orbitale (jour)</td>
-                                                <td>{{ orbit.orbital_period }}</td>
+                                                <td>{{ orbit.orbital_period  | number : 10}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Anomalie moyenne (°)</td>
-                                                <td>{{ orbit.mean_anomaly }}</td>
+                                                <td>{{ orbit.mean_anomaly  | number : 10}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Mouvement moyen (°/jour)</td>
-                                                <td>{{ orbit.mean_motion }}</td>
+                                                <td>{{ orbit.mean_motion  | number : 10}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Temps de passage au périhélion (jour julien)</td>
-                                                <td>{{ orbit.perihelion_time }}</td>
+                                                <td>{{ orbit.perihelion_time  | number : 10}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Invariant de Tisserand par rapport à Jupiter</td>
-                                                <td>{{ orbit.jupiter_tisserand_invariant }}</td>
+                                                <td>{{ orbit.jupiter_tisserand_invariant | number}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Équinoxe</td>
@@ -155,11 +155,11 @@
                                             </tr>
                                             <tr>
                                                 <td>Époque de détermination (TDB)</td>
-                                                <td>{{ orbit.epoch_osculation }}</td>
+                                                <td>{{ orbit.epoch_osculation | number}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Date de détermination de l'orbite</td>
-                                                <td>{{ orbit_determination_date | date : "dd-MM-yyyy" }}</td>
+                                                <td>{{ orbit_determination_date | date : "dd MMMM yyyy" }}</td>
                                             </tr>
                                             <tr class="last">
                                                 <td>Incertitude liée à l'orbite (U)</td>
@@ -171,9 +171,62 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="margin-bottom:8px;">
                         <div class="col s12">
                             <div id="orbit-scene-div"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ds-info-row">
+        <div class="col s12">
+            <div class="row ds-info-section-row">
+                <div class="col s12">
+                    <div class="valign-wrapper">
+                        <i class="material-icons medium valign" style="display:inline-block;">priority_high</i>
+                        <h4 class="valign" style="display:inline-block;">Approches de l'astéroïde</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row ds-info-detail-row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col s12">
+                            <ul class="collection" style="margin-bottom:0px">
+                                <div class="ds-dark-text collection-item" ng-repeat="app in close_approaches">
+                                    <div class="ds-bold"> Date de l'approche
+                                        <div class="secondary-content ds-dark-text ds-bold">
+                                            Astre à proximité
+                                        </div>
+                                    </div>
+                                    <div>{{app.close_approach_date | date:"dd MMMM yyyy"}}
+                                        <div class="secondary-content ds-dark-text">
+                                            {{app.orbiting_body}}
+                                        </div>
+                                    </div>
+                                    </br>
+                                    <div>
+                                        <div class="ds-bold">Vitesse relative
+                                            <div class="secondary-content ds-dark-text ds-bold">
+                                                Distance minimale
+                                            </div>
+                                        </div>
+                                        <div>{{app.relative_velocity.kilometers_per_second | number : 10}} (km/s)
+                                            <div class="secondary-content ds-dark-text">
+                                                {{app.miss_distance.astronomical | number : 10}} (ua)
+                                            </div>
+                                        </div>
+                                        <div>{{app.relative_velocity.kilometers_per_hour | number : 10}} (km/h)
+                                            <div class="secondary-content ds-dark-text">
+                                                {{app.miss_distance.kilometers| number}} (km)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
                         </div>
                     </div>
                 </div>

@@ -6,6 +6,15 @@ a {
   color: #eceff1 !important;
 }
 
+.ds-link:hover {
+  transition: color text-decoration 0.1s !important;
+  color: #cfd8dc !important;
+}
+
+.ds-bold {
+  font-weight: bold;
+}
+
 .ds-content {
   padding-right: 50px;
   padding-left: 50px;
@@ -169,5 +178,24 @@ a {
 
 .ds-pagination {
   padding:0px !important;
+}
+
+.ds-collapsible-header {
+  background-color: #eceff1 !important;
+  color: #263238 !important;
+  width:400px;
+  height:32px;
+  margin-top:0px;
+  margin-bottom:0px;
+  padding:8px;
+}
+
+.ds-collapsible-body {
+  background-color: #eceff1 !important;
+  color: #263238 !important;
+  width:400px;
+  height:32px;
+  margin-top:0px;
+  padding-left:8px;
 }
 
