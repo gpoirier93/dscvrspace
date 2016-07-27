@@ -11,9 +11,8 @@ module.exports.getApiRouter = function(app) {
 
   apiRouter.get('/planets/:id?', function(req, res) {
     var id = req.params.id;
-    var include = req.query.full;
     if (id) {
-      dao.findPlanetById(id, res);
+      dao.findPlanetarySystem(id, res);
     } else {
       dao.findAllPlanets(res);
     }

@@ -199,3 +199,13 @@ a {
   padding-left:8px;
 }
 
+.ds-dropdown-item {
+  color: #263238 !important;
+  background-color: #eceff1 !important;
+}
+
+.ds-dropdown-item:hover {
+  transition: background-color 0.3s !important;
+  background-color: #b0bec5 !important;
+}
+

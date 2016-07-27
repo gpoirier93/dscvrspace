@@ -69,6 +69,7 @@ models.sequelize.sync({force:true}).then(function () {
       }).then(function(orbit) {
         var body = models.Body.build({
           diameter: planet.diameter,
+          media_url:planet.media_url,
           details: {
             axial_tilt: planet.axial_tilt,
             mean_density: planet.mean_density,

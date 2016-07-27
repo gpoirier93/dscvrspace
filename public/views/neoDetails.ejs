@@ -102,7 +102,7 @@
                                                 <td>{{ orbit.minimum_orbit_intersection  | number : 6}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Excentricité</td>
+                                                <td><a class="ds-dark-text tooltipped" data-position="top" data-delay="50" data-tooltip="I am tooltip">Excentricité</a></td>
                                                 <td>{{ orbit.eccentricity  | number : 10}}</td>
                                             </tr>
                                             <tr>
@@ -234,3 +234,8 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+    $('.tooltipped').tooltip();
+  });
+</script>

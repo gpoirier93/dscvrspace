@@ -28,6 +28,10 @@ app.get('/neo/:id', function(request, response) {
   response.render('index.ejs', {location:'neo/'+request.params.id});
 })
 
+app.get('/system/:planet', function(request, response) {
+  response.render('index.ejs', {location:'system/'+request.params.planet});
+})
+
 app.get('/about', function(request, response) {
   response.render('index.ejs', {location:'about'});
 })

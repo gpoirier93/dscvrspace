@@ -2,7 +2,6 @@ app.service('orbitModellerService', ['$rootScope','$log', function($rootScope, $
     // Define distance divider
     $rootScope.dd = 1000000;
     this.modelOrbit = function(orbit, meshColor) {
-        $log.log(orbit);
         var bigAxis = orbit.semi_major_axis/$rootScope.dd;
         var smallAxis = orbit.semi_major_axis * Math.sqrt((orbit.eccentricity * orbit.eccentricity)+1)/$rootScope.dd;
         var curve = new THREE.EllipseCurve(

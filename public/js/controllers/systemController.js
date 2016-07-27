@@ -46,19 +46,6 @@ app.controller('SystemController', ['$scope', '$rootScope', '$log', 'system', 's
     // Render
     render();
 
-    // Orbit Controls
-    // $scope.zoomIn = function() {
-    //     $log.log(sceneFactory.camera.zoom);
-    //     sceneFactory.camera.zoom += 1;
-    //     sceneFactory.camera.updateProjectionMatrix();
-    // }
-
-    // $scope.zoomOut = function() {
-    //     $log.log(sceneFactory.camera.zoom);
-    //     sceneFactory.camera.zoom -= 1;
-    //     sceneFactory.camera.updateProjectionMatrix();
-    // }
-
     function render() {
         requestAnimationFrame( render );
         renderer.render( sceneFactory.scene, sceneFactory.camera );
