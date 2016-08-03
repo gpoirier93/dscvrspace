@@ -10,19 +10,125 @@
                 </div>
             </div>
             <div class="row ds-info-detail-row">
-                <div class="col s6" style="margin-top:10px">
+                <div class="col s3" style="margin-top:10px;margin-bottom:8px;">
                     <img class="responsive-img" src="{{system.body.media_url}}"/>
                 </div>
-                <div class="col s6">
+                <div class="col s5">
                     <h5>Nom</h5>
                     <p>{{system.name_fr}}</p>
+                    <h5>Ordre à partir du Soleil</h5>
+                    <p>{{solarOrderFormat(system.solar_order)}}</p>
+                </div>
+                <div class="col s4">
+                    <h5>Nombre d'anneaux</h5>
+                    <p>{{system.ring_number}}</p>
+                    <h5>Nombre de lunes</h5>
+                    <p>{{system.moon_number}}</p>
                 </div>
             </div>
-            <div class="row">
+            
+        </div>
+    </div>
+    <div class="row ds-info-row">
+        <div class="col s12">
+            <div class="row ds-info-section-row">
                 <div class="col s12">
-                    <!--<a class="btn ds-button ds-lightest" target="_blank" href="{{neo.nasa_jpl_url}}" style="margin-left:10px;"><i class="material-icons right">open_in_new</i>Fiche complète sur le site du JPL</a>-->
+                    <div class="valign-wrapper">
+                        <i class="material-icons medium valign" style="display:inline-block;">assignment</i>
+                        <h4 class="valign" style="display:inline-block;">Propriétés physiques</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row ds-info-detail-row">
+                <div class="col s12">
+                    <ul id='physicalPropertyDropdown' class='dropdown-content'>
+                        <li ng-repeat="item in comparaisonDropdownList track by $index" ng-click="setComparaison(item)"><a class="ds-dark-text">{{item.display_name}}</a></li>
+                    </ul>
+                    <table id="orbital-data-table" class="ds-table-light" style="margin-top:10px;">
+                        <thead>
+                            <tr class="separator">
+                                <th data-field="property">PROPRIÉTÉ</th>
+                                <th data-field="value">VALEUR</th>
+                                <th data-field="value"><a class='dropdown-button btn ds-button ds-lightest' href='#' data-activates='physicalPropertyDropdown'>{{comparaison ? comparaison.name_fr : 'Comparaison'}}<i class="material-icons right">arrow_drop_down</i></a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Diamètre (km)</td>
+                                <td>{{ system.body.diameter | number }} km</td> 
+                                <td ng-show="comparaison">{{ comparaison.body.diameter | number }} km</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Masse (kg)</td>
+                                <td>{{ numberAsExponential(system.body.details.mass) }} kg</td>
+                                <td ng-show="comparaison">{{ numberAsExponential(comparaison.body.details.mass) }} kg</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Volume (km<sup>3</sup>)</td>
+                                <td>{{ numberAsExponential(system.body.details.volume) }} km<sup>3</sup></td>
+                                <td ng-show="comparaison">{{ numberAsExponential(comparaison.body.details.volume) }} km<sup>3</sup></td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Densité moyenne (kg/km<sup>3</sup>)</td>
+                                <td>{{ system.body.details.mean_density  | number }} kg/km<sup>3</sup></td>
+                                <td ng-show="comparaison">{{ comparaison.body.details.mean_density  | number }} kg/km<sup>3</sup></td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Obliquité (°)</td>
+                                <td>{{ system.body.details.axial_tilt  | number }}°</td>
+                                <td ng-show="comparaison">{{ comparaison.body.details.axial_tilt  | number }}°</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Gravité (m/s<sup>2</sup>)</td>
+                                <td>{{ system.body.details.gravity  | number }} m/s<sup>2</sup></td>
+                                <td ng-show="comparaison">{{ comparaison.body.details.gravity  | number }} m/s<sup>2</sup></td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Vitesse de d'évasion (m/s)</td>
+                                <td>{{ system.body.details.escape_velocity  | number }} m/s</td>
+                                <td ng-show="comparaison">{{ comparaison.body.details.escape_velocity  | number }} m/s</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Duré d'une journée (heures)</td>
+                                <td>{{ system.body.details.length_of_day  | number }}h</td>
+                                <td ng-show="comparaison">{{ comparaison.body.details.length_of_day  | number }}h</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Période de rotation (heures)</td>
+                                <td>{{ system.body.details.rotation_period  | number }}h</td>
+                                <td ng-show="comparaison">{{ comparaison.body.details.rotation_period  | number }}h</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr class="last">
+                                <td>Température moyenne (°C)</td>
+                                <td>{{ system.body.details.mean_temperature  | number }}°C</td>
+                                <td ng-show="comparaison">{{ comparaison.body.details.mean_temperature  | number }}°C</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrain_width: true, // Does not change width of dropdown to that of the activator
+      hover: false, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: true, // Displays dropdown below the button
+      alignment: 'left' // Displays dropdown with edge aligned to the left of button
+    }
+  );
+  </script>

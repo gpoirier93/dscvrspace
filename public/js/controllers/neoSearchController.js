@@ -1,4 +1,4 @@
-app.controller('NeoSearchController', ['$log','$scope','$location','neoFactory', function($log, $scope, $location, neoFactory) {
+app.controller('NeoSearchController', ['$log','$scope','$location','neoFactory','errorManagerHelper', function($log, $scope, $location, neoFactory, errorManagerHelper) {
     
     $scope.neoDate = neoFactory.selectedDate;
     $scope.pageIndex = neoFactory.pageIndex;
@@ -37,27 +37,41 @@ app.controller('NeoSearchController', ['$log','$scope','$location','neoFactory',
         // Call the service with the user input
         neoFactory.getNeoById(id, function() {
             // Put the results in the $scope then navigate to the neoDetails page
-            $scope.results = neoFactory.results;
-            $scope.updateSelectedNeo(neoFactory.results[0]);
-            $location.path('/neo/'+neoFactory.selectedNeo.neo_reference_id);
-            $scope.dataAvailable = true; 
+            if (neoFactory.results.length > 0) {
+                $scope.results = neoFactory.results;
+                $scope.updateSelectedNeo(neoFactory.results[0]);
+                $location.path('/neo/'+neoFactory.selectedNeo.neo_reference_id);
+                $scope.dataAvailable = true; 
+            } else {
+                $scope.results = [];
+                $scope.dataAvailable = false;
+            }
         }, errorCallback);
     }
 
     $scope.browse = function() {
         neoFactory.browse($scope.pageIndex, function() {
-            $scope.results = neoFactory.results;
-            $scope.page = neoFactory.page;
-            $scope.dataAvailable = true;
+            if (neoFactory.results.length>0) {
+                $scope.results = neoFactory.results;
+                $scope.page = neoFactory.page;
+                $scope.dataAvailable = true;
+            } else {
+                $scope.results = [];
+                $scope.dataAvailable = false;
+            }
         }, errorCallback());
     }
 
     $scope.searchNeoFromDate = function() {
         neoFactory.getNeoFromDate(function() {
-            $scope.results = neoFactory.results;
-            $scope.resultsKeys = neoFactory.resultsKeys;
-            $scope.dataAvailable = true;
-            $log.log($scope.resultsKeys);
+            if (neoFactory.resultsKeys.length > 0) {
+                $scope.results = neoFactory.results;
+                $scope.resultsKeys = neoFactory.resultsKeys;
+                $scope.dataAvailable = true;
+            } else {
+                $scope.results = [];
+                $scope.dataAvailable = false;
+            }
         }, errorCallback());
     }
 
@@ -97,7 +111,6 @@ app.controller('NeoSearchController', ['$log','$scope','$location','neoFactory',
 
     $scope.dateOptionUpdate = function(optionIndex) {
             neoFactory.updateDateOptionIndex(optionIndex);
-            $log.log(optionIndex);
             switch (optionIndex) {
                 case 0:
                     $scope.dateOptionButtonDayClass = 'ds-button-active';
@@ -118,6 +131,7 @@ app.controller('NeoSearchController', ['$log','$scope','$location','neoFactory',
     function errorCallback(error) {
         $scope.results = [];
         $scope.dataAvailable = false;
+        // errorManagerHelper.showError('Une erreur est survenue. Veuillez réessayer plus tard.')
     }
 
     $scope.idResultsArray = function() {

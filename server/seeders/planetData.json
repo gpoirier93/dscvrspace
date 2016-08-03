@@ -4,6 +4,7 @@
       "en": "Mercury",
       "fr": "Mercure"
     },
+    "solar_order":1,
     "diameter": 4879,
     "axial_tilt": 0,
     "mean_density": 5427,
@@ -34,6 +35,7 @@
       "en": "Venus",
       "fr": "Vénus"
     },
+    "solar_order":2,
     "diameter": 12104,
     "axial_tilt": 177.4,
     "mean_density": 5243,
@@ -64,6 +66,7 @@
       "en": "Earth",
       "fr": "Terre"
     },
+    "solar_order":3,
     "diameter": 12756,
     "axial_tilt": 23.4,
     "mean_density": 5514,
@@ -94,6 +97,7 @@
       "en": "Mars",
       "fr": "Mars"
     },
+    "solar_order":4,
     "diameter": 6792,
     "axial_tilt": 25.2,
     "mean_density": 3933,
@@ -124,6 +128,7 @@
       "en": "Jupiter",
       "fr": "Jupiter"
     },
+    "solar_order":5,
     "diameter": 142984,
     "axial_tilt": 3.1,
     "mean_density": 1326,
@@ -154,6 +159,7 @@
       "en": "Saturn",
       "fr": "Saturne"
     },
+    "solar_order":6,
     "diameter": 120536,
     "axial_tilt": 26.7,
     "mean_density": 687,
@@ -184,6 +190,7 @@
       "en": "Uranus",
       "fr": "Uranus"
     },
+    "solar_order":7,
     "diameter": 51118,
     "axial_tilt": 97.8,
     "mean_density": 1271,
@@ -214,6 +221,7 @@
       "en": "Neptune",
       "fr": "Neptune"
     },
+    "solar_order":8,
     "diameter": 49528,
     "axial_tilt": 28.3,
     "mean_density": 1638,
@@ -244,6 +252,7 @@
       "en": "Pluto",
       "fr": "Pluton"
     },
+    "solar_order":9,
     "diameter": 2370,
     "axial_tilt": 122.5,
     "mean_density": 2095,

@@ -5,6 +5,7 @@ module.exports = function(sequelize, DataTypes) {
     mean_density: DataTypes.NUMERIC,
     gravity: DataTypes.NUMERIC,
     escape_velocity: DataTypes.NUMERIC,
+    length_of_day: DataTypes.NUMERIC,
     rotation_period: DataTypes.NUMERIC,
     mean_temperature: DataTypes.NUMERIC,
     mass: DataTypes.NUMERIC,

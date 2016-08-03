@@ -33,7 +33,7 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
                     successCallback();
                 } else {
                     neoFactory.results = [];
-                    errorCallback();
+                    successCallback();
                 }
             }, function(response) {
                 neoFactory.results = [];
@@ -79,7 +79,7 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
                 successCallback();
             } else {
                 neoFactory.results = [];
-                errorCallback();
+                successCallback();
             }
         }, function(response) {
             neoFactory.results = [];
@@ -105,7 +105,6 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
             endDate = startDate;
         }
 
-        $log.log(startDate + '   '+endDate);
         $http.get(neoFactory.BASE_URL+'/feed', {
             params: {
                 start_date:startDate,
@@ -114,7 +113,6 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
             }, cache:true
         }).then(function(response) {
             if (response.data) {
-                $log.log(response.data);
                 // We put the neo inside the results array
                 neoFactory.resultsKeys = Object.keys(response.data.near_earth_objects).sort();
                 neoFactory.results = response.data.near_earth_objects;
@@ -123,7 +121,8 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
                 successCallback();
             } else {
                 neoFactory.results = [];
-                errorCallback();
+                neoFactory.resultsKeys = [];
+                successCallback();
             }
         }, function(response) {
             neoFactory.results = [];

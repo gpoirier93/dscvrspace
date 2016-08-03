@@ -9,27 +9,34 @@
                         <p class="ds-light-text flow-text" style="font-size:small;">Nombre d'astéroïdes accessibles : {{stats.near_earth_object_count}}</p>
                         <p class="ds-light-text flow-text" style="font-size:small;">Date de la dernière mise à jour : {{stats.last_updated | date : "dd MMMM yyyy"}}</p>
                     </div> 
-                    <select class="ds-select" ng-options="v.value as v.title for v in searchMethod.values"
+                    <div class="row" style ="padding:0px 10px">
+                    <select class="ds-select col s6" ng-options="v.value as v.title for v in searchMethod.values"
                     ng-model="searchMethod.value" ng-change="updateSearchMethod()">
                     </select>
+                    </div>
+                    <div ng-hide="searchMethod.value === 0" class="divider" style="margin-top:20px"/>
                     <div ng-show="searchMethod.value === 1" style="padding:0px;margin-top:20px;">
+                        <p>En date du :</p>
                         <div style="display:inline-block;">
                             <datepicker>
-                                <input class="ds-input" ng-change="updateNeoDate()" ng-model="neoDate" type="text"/>
+                                <input class="ds-input" ng-change="updateNeoDate()" ng-model="neoDate" date-format="dd-MM-yyyy" type="text"/>
                             </datepicker>
                         </div>
-                        <div style="display:inline-block;margin-top:20px;width:100%">
+                        <p>Effectuer la recherche pour :</p>
+                        <div style="display:inline-block;width:100%">
                             <button ng-Class="dateOptionButtonDayClass" class="btn ds-button ds-lightest" id="dateOptionButtonDay" ng-click="dateOptionUpdate(0)">Le jour même</button>
                             <button ng-class="dateOptionButtonWeekClass" class="btn ds-button ds-lightest" id="dateOptionButtonWeek" ng-click="dateOptionUpdate(1)">Intervalle de 7 jours</button>
                             <button class="btn ds-lightest ds-button" ng-click="searchNeoFromDate()"><i class="material-icons">search</i></button>
                         </div> 
                     </div>
                     <div ng-show="searchMethod.value === 2" style="padding:0px;margin-top:20px;">
-                        <div class="col s11" style="padding:0px">
-                            <input class="ds-search-bar" type="text" id="search-bar" placeholder="Rechercher..." ng-keydown="($event.which === 13)?searchNeoById():0"></input>
-                        </div>
-                        <div class="col s1" style="padding-left:0px;padding-right:20px;">
-                            <button class="btn ds-lightest ds-button" ng-click="searchNeoById()"><i class="material-icons">search</i></button>
+                        <div class="row" style ="padding:0px 10px">
+                            <div class="col s6" style="padding:0px">
+                                <input class="ds-search-bar" type="text" id="search-bar" placeholder="Rechercher..." ng-keydown="($event.which === 13)?searchNeoById():0"></input>
+                            </div>
+                            <div class="col s1" style="">
+                                <button class="btn ds-lightest ds-button"><i class="material-icons">search</i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -65,7 +72,7 @@
                     </div>
                     <div ng-show="dataAvailable && !idResultsArray()">
                         <div ng-repeat="key in resultsKeys">
-                            <p class="ds-light-text flow-text" style="font-size:medium;">{{resultsKeys[$index]}}</p>
+                            <p class="ds-light-text flow-text" style="font-size:medium;">{{resultsKeys[$index] | date : "dd MMMM yyyy"}}</p>
                             <ul class="collection">
                                 <a href="/neo/{{neo.neo_reference_id}}" class="ds-dark-text collection-item" ng-repeat="neo in results[key]" ng-click="updateSelectedNeo(neo)">
                                     <div>{{$index+ 1}}.&nbsp;&nbsp;&nbsp;&nbsp;{{neo.name}}

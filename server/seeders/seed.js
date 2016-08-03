@@ -1,6 +1,6 @@
 var models = require('../models');
 var planets = require('./planetData.json');
-
+var moons = require('./moonData.json');
 // Associate models so we can work with nested objects
 models.Star.hasMany(models.Planet, {as:'planets'});
 models.Star.hasMany(models.NEO, {as:'neos'});
@@ -75,8 +75,9 @@ models.sequelize.sync({force:true}).then(function () {
             mean_density: planet.mean_density,
             gravity: planet.gravity,
             escape_velocity: planet.escape_velocity,
-            rotation_period: planet.length_of_day,
-            mean_temperature: planet.rotation_period,
+            length_of_day: planet.length_of_day,
+            rotation_period: planet.rotation_period,
+            mean_temperature: planet.mean_temperature,
             mass: planet.mass,
             volume: planet.volume
           }
@@ -86,13 +87,42 @@ models.sequelize.sync({force:true}).then(function () {
         body.setOrbit(orbit, {save: false});
         body.save().then(function(body) {
           var planetObject = models.Planet.build({
+            solar_order:planet.solar_order,
             moon_number: planet.moon_number,
             ring_number: planet.ring_number,
             name_fr: planet.names.fr,
             name_en: planet.names.en,
           });
           planetObject.setBody(body, {save: false});
-          planetObject.save();
+          planetObject.save().then(function(planet) {
+            moons[planet.solar_order-1].forEach(function(moon) {
+              models.Orbit.create({
+                eccentricity: moon.orbit.eccentricity,
+                semi_major_axis: moon.orbit.semi_major_axis,
+                perihelion_distance: moon.orbit.perihelion_distance,
+                inclination: moon.orbit.inclination,
+                perihelion_argument: moon.orbit.perihelion_argument,
+                ascending_node: moon.orbit.ascending_node
+              }).then(function(orbit) {
+                var body = models.Body.build({
+                  diameter: moon.diameter,
+                });
+                body.setOrbit(orbit, {save: false});
+                body.save().then(function(body) {
+                  var satelliteObject = models.Satellite.build({
+                    name_en:moon.names.en,
+                    name_fr:moon.names.fr,
+                    satellite_type:moon.satellite_type
+                  });
+                  satelliteObject.setBody(body, {save: false});
+                  satelliteObject.save().then(function(satellite) {
+                    planet.addSatellite(satellite);
+                    planet.save();
+                  });
+                });
+              });
+            })
+          });
         });
       });
     });

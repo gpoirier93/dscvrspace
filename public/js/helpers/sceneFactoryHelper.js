@@ -3,16 +3,6 @@ app.service('sceneFactoryHelper', ['$rootScope', '$log','orbitModellerService', 
 
     service.initScene = function(system, hasAxis) {
         var scene = new THREE.Scene();
-
-        // bulbLight = new THREE.PointLight( 0xFFFFF, 500, 10000 );
-        // bulbMat = new THREE.MeshLambertMaterial( {
-        //     emissive: 0xffffee,
-        //     emissiveIntensity: 1,
-        //     color: 0x000000
-        // });
-        // bulbLight.position.set( 0, 0, 0 );
-        // bulbLight.castShadow = true;
-        // scene.add( bulbLight );
         var light = new THREE.PointLight( 0xff0000, 500, 10000 );
         light.position.set( 0, 0, 0 );
         scene.add( light )
