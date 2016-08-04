@@ -209,3 +209,25 @@ a {
   background-color: #b0bec5 !important;
 }
 
+#scene-orientation-div  {
+    width: 85px;
+    height: 85px;
+    background-color: black; /* or transparent; will show through only if renderer alpha: true */
+    border: 2px solid white; /* or none; */
+    margin: 20px;
+    padding: 0px;
+    position: absolute;
+    left: 0px;
+    top: 65px;
+    z-index: 100;
+}
+
+#scene-orientation-div-details  {
+    width: 85px;
+    height: 85px;
+    background-color: black; /* or transparent; will show through only if renderer alpha: true */
+    border: 2px solid white; /* or none; */
+    left:10px;
+    top:10px;
+    position:absolute;
+}

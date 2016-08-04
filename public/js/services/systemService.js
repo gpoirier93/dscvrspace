@@ -1,11 +1,14 @@
-app.service('systemService', ['$log','$http', function($log, $http) {
+app.service('systemService', ['$log','$http','errorManagerHelper', function($log, $http, errorManagerHelper) {
   this.getSolarSystem = function(successCallback, errorCallback) {
     if (successCallback) {
         $http.get('/api/solarSystem', {cache:true}).then(function(response) {
             if (response.data) {
                 successCallback(response.data);
             }
-      }, errorCallback);
+      }, function() {
+          errorManagerHelper.showError('Une erreur est survenue. Veuillez réessayer plus tard.')
+          errorCallback();
+      });
     } else {
         return $http.get('/api/solarSystem', {cache:true}).then(function(response){
             if (response.data) {
@@ -23,7 +26,10 @@ app.service('systemService', ['$log','$http', function($log, $http) {
             if (response.data) {
                 successCallback(response.data);
             }
-      }, errorCallback);
+      }, function() {
+          errorManagerHelper.showError('Une erreur est survenue. Veuillez réessayer plus tard.')
+          errorCallback();
+      });
     } else {
         return $http.get('/api/planets/'+id, {cache:true}).then(function(response){
             if (response.data) {

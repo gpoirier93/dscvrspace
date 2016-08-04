@@ -3,7 +3,13 @@ app.factory('sceneFactory', ['$log','$rootScope', function($log, $rootScope) {
         camera:undefined,
         scene:undefined,
         orbitControlsParameters: undefined,
-        isDefined: false
+        isDefined: false,
+        planetSystem : {
+            camera:undefined,
+            scene:undefined,
+            orbitControlsParameters: undefined,
+            isDefined: false
+        }
     }
 
     return service;

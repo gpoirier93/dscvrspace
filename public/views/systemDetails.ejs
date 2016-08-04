@@ -44,7 +44,7 @@
                     <ul id='physicalPropertyDropdown' class='dropdown-content'>
                         <li ng-repeat="item in comparaisonDropdownList track by $index" ng-click="setComparaison(item)"><a class="ds-dark-text">{{item.display_name}}</a></li>
                     </ul>
-                    <table id="orbital-data-table" class="ds-table-light" style="margin-top:10px;">
+                    <table class="ds-table-light" style="margin-top:10px;">
                         <thead>
                             <tr class="separator">
                                 <th data-field="property">PROPRIÉTÉ</th>
@@ -119,16 +119,195 @@
             </div>
         </div>
     </div>
+    <div class="row ds-info-row">
+        <div class="col s12">
+            <div class="row ds-info-section-row">
+                <div class="col s12">
+                    <div class="valign-wrapper">
+                        <i class="material-icons medium valign" style="display:inline-block;">settings_backup_restore</i>
+                        <h4 class="valign" style="display:inline-block;">Propriétés orbitales</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row ds-info-detail-row">
+                <div class="col s12">
+                    <table id="orbital-data-table" class="ds-table-light" style="margin-top:10px;">
+                        <thead>
+                            <tr class="separator">
+                                <th data-field="property">PROPRIÉTÉ</th>
+                                <th data-field="value">VALEUR</th>
+                                <th data-field="value"><a class='dropdown-button btn ds-button ds-lightest' href='#' data-activates='physicalPropertyDropdown'>{{comparaison ? comparaison.name_fr : 'Comparaison'}}<i class="material-icons right">arrow_drop_down</i></a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Excentricité</td>
+                                <td>{{ system.body.orbit.eccentricity | number : 10}}</td> 
+                                <td ng-show="comparaison">{{ comparaison.body.orbit.eccentricity | number : 10 }}</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Axe semi majeur (km)</td>
+                                <td>{{ system.body.orbit.semi_major_axis | number }} km</td>
+                                <td ng-show="comparaison">{{ numberAsExponential(comparaison.body.details.mass) }} km</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Distance du périhélie (km)</td>
+                                <td>{{ system.body.orbit.perihelion_distance | number }} km</td>
+                                <td ng-show="comparaison">{{ comparaison.body.orbit.perihelion_distance | number }} km</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Distance de l'aphélie (km)</td>
+                                <td>{{ system.body.orbit.details.aphelion_distance  | number }} km</td>
+                                <td ng-show="comparaison">{{ comparaison.body.orbit.details.aphelion_distance | number }} km</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Inclinaison (°)</td>
+                                <td>{{ system.body.orbit.inclination  | number }}°</td>
+                                <td ng-show="comparaison">{{ comparaison.body.orbit.inclination  | number }}°</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Argument du périhélie (°)</td>
+                                <td>{{ system.body.orbit.perihelion_argument | number }}°</td>
+                                <td ng-show="comparaison">{{ comparaison.body.orbit.perihelion_argument  | number }}°</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Longitude du noeud ascendant (°)</td>
+                                <td>{{ system.body.orbit.ascending_node | number }}°</td>
+                                <td ng-show="comparaison">{{ comparaison.body.orbit.ascending_node | number }}°</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Période orbitale (jours)</td>
+                                <td>{{ system.body.orbit.details.orbital_period  | number }} j</td>
+                                <td ng-show="comparaison">{{ comparaison.body.orbit.details.orbital_period | number }} j</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr>
+                                <td>Vitesse orbitale (m/s)</td>
+                                <td>{{ system.body.orbit.details.orbital_speed  | number }} m/s</td>
+                                <td ng-show="comparaison">{{ comparaison.body.orbit.details.orbital_speed  | number }} m/s</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                            <tr class="last">
+                                <td>Equinox</td>
+                                <td>{{ system.body.orbit.details.equinox }}</td>
+                                <td ng-show="comparaison">{{ comparaison.body.orbit.details.equinox }}</td>
+                                <td ng-show="!comparaison">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row" style="margin-bottom:8px;">
+                        <div class="col s12">
+                            <div id="orbit-scene-div" style="position:relative;">
+                                <div id="scene-orientation-div-details"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="system.moon_number > 0" class="row ds-info-row">
+            <div class="col s12">
+                <div class="row ds-info-section-row">
+                    <div class="col s12">
+                        <div class="valign-wrapper">
+                            <i class="material-icons medium valign" style="display:inline-block;">hdr_strong</i>
+                            <h4 class="valign" style="display:inline-block;"> Satellites</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ds-info-detail-row">
+                    <div class="col s12">
+                        <h5>Nombre de satellites</h5>
+                        <p>{{system.moon_number}}</p>
+                        <p ng-show="system.satellites.length === 0">Aucune données disponibles sur les satellites de cette planète.</p>
+                        <ul ng-show="system.satellites.length > 0" class="collection" style="margin-bottom:10px">
+                            <div class="ds-dark-text collection-item" ng-repeat="satellite in system.satellites | orderBy : satellite.body.orbit.semi_major_axis">
+                                <h5 class="ds-dark-text">{{$index+ 1}}.&nbsp;&nbsp;&nbsp;&nbsp;{{satellite.name_fr}}</h5>
+                                <div class="ds-bold">Diamètre (km)
+                                    <div class="secondary-content ds-dark-text ds-bold">
+                                        Excentricité de l'orbite
+                                    </div>
+                                </div>
+                                <div>{{satellite.body.diameter | number}} km
+                                    <div class="secondary-content ds-dark-text">
+                                        {{satellite.body.orbit.eccentricity | number}}
+                                    </div>
+                                </div>
+                                </br>
+                                <div>
+                                    <div class="ds-bold">Axe semi majeur de l'orbite (km)
+                                        <div class="secondary-content ds-dark-text ds-bold">
+                                            Distance du périhelie (km)
+                                        </div>
+                                    </div>
+                                    <div>{{satellite.body.orbit.semi_major_axis | number}} km
+                                        <div class="secondary-content ds-dark-text">
+                                            <div ng-show="satellite.body.orbit.perihelion_distance">{{satellite.body.orbit.perihelion_distance | number }} km</div>
+                                            <div ng-hide="satellite.body.orbit.perihelion_distance">-</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </br>
+                                <div>
+                                    <div class="ds-bold">Inclinaison de l'orbite (°)
+                                        <div class="secondary-content ds-dark-text ds-bold">
+                                            Argument du périhélie de l'orbite (°)
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div ng-show="satellite.body.orbit.inclination">{{satellite.body.orbit.inclination | number }} °
+                                            <div ng-show="satellite.body.orbit.perihelion_argument" class="secondary-content ds-dark-text">
+                                                {{satellite.body.orbit.perihelion_argument | number }} °
+                                            </div>
+                                            <div ng-hide="satellite.body.orbit.perihelion_argument" class="secondary-content ds-dark-text">
+                                                -
+                                            </div>
+                                        </div>
+                                        <div ng-hide="satellite.body.orbit.inclination">-
+                                            <div ng-show="satellite.body.orbit.perihelion_argument" class="secondary-content ds-dark-text">
+                                                {{satellite.body.orbit.perihelion_argument | number }} °
+                                            </div>
+                                            <div ng-hide="satellite.body.orbit.perihelion_argument" class="secondary-content ds-dark-text">
+                                                -
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </br>
+                                <div>
+                                    <div class="ds-bold">Longitude du noeud ascendand de l'orbite (°)</div>
+                                    <div>
+                                        <div ng-show="satellite.body.orbit.ascending_node">{{satellite.body.orbit.ascending_node | number }} °</div>
+                                        <div ng-hide="satellite.body.orbit.ascending_node">-</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
     $('.dropdown-button').dropdown({
-      inDuration: 300,
-      outDuration: 225,
-      constrain_width: true, // Does not change width of dropdown to that of the activator
-      hover: false, // Activate on hover
-      gutter: 0, // Spacing from edge
-      belowOrigin: true, // Displays dropdown below the button
-      alignment: 'left' // Displays dropdown with edge aligned to the left of button
-    }
-  );
+        inDuration: 300,
+        outDuration: 225,
+        constrain_width: true, // Does not change width of dropdown to that of the activator
+        hover: false, // Activate on hover
+        gutter: 0, // Spacing from edge
+        belowOrigin: true, // Displays dropdown below the button
+        alignment: 'left' // Displays dropdown with edge aligned to the left of button
+        }
+    );
+
+
   </script>

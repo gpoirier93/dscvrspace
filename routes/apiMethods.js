@@ -162,7 +162,8 @@ dao.findSolarSystem = function(response) {
 dao.findPlanetarySystem = function(id, response) {
   models.Planet.findById(id, { include:[
       { model:models.Body, as:'body', include:[
-        { model:models.Orbit, as:'orbit' },
+        { model:models.Orbit, as:'orbit', include:[
+          { model:models.OrbitDetail, as:'details'}]},
         { model:models.BodyDetail, as:'details' }]}
     , { model:models.Satellite, as:'satellites', include:[
         { model:models.Body, as:'body', include:[

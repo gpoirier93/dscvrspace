@@ -130,7 +130,7 @@
                                                 <td>{{ orbit.ascending_node_longitude  | number : 10}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Période orbitale (jour)</td>
+                                                <td>Période orbitale (jours)</td>
                                                 <td>{{ orbit.orbital_period  | number : 10}}</td>
                                             </tr>
                                             <tr>
@@ -173,7 +173,9 @@
                     </div>
                     <div class="row" style="margin-bottom:8px;">
                         <div class="col s12">
-                            <div id="orbit-scene-div"/>
+                            <div id="orbit-scene-div" style="position:relative">
+                                <div id="scene-orientation-div-details"/>
+                            </div>
                         </div>
                     </div>
                 </div>

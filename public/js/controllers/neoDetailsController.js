@@ -1,4 +1,4 @@
-app.controller('NeoDetailsController', ['$scope', '$log','$location','neoFactory','sceneFactoryHelper','systemService','orbitModellerService','$routeParams', function($scope, $log,$location, neoFactory, sceneFactoryHelper, systemService, orbitModellerService, $routeParams) {
+app.controller('NeoDetailsController', ['$rootScope', '$scope', '$log','$location','neoFactory','sceneFactoryHelper','systemService','orbitModellerService','$routeParams', function($rootScope, $scope, $log,$location, neoFactory, sceneFactoryHelper, systemService, orbitModellerService, $routeParams) {
     if (neoFactory.selectedNeo) {
         if (neoFactory.selectedNeo.orbital_data && neoFactory.selectedNeo.close_approach_data) {
             init();
@@ -32,7 +32,7 @@ app.controller('NeoDetailsController', ['$scope', '$log','$location','neoFactory
             var sceneHeight = sceneWidth * 9 / 16
 
             // get scene and camera objects
-            var scene = sceneFactoryHelper.initScene(system, true);
+            var scene = sceneFactoryHelper.initScene(system);
             var camera = sceneFactoryHelper.initCamera(sceneWidth, sceneHeight, 1000)
 
             // Add NEO orbit
@@ -56,12 +56,51 @@ app.controller('NeoDetailsController', ['$scope', '$log','$location','neoFactory
             orbitControls.maxDistance = 10000;
             orbitControls.update();
 
-            render();
+            var center = orbitModellerService.modelPlanet(system)
+            scene.add( center );
+            system.planets.forEach(function(planet) {
+                var color = undefined;
+                if (planet.solar_order === 3) {
+                    color = 0x467EE8;
+                }
+                var orbit = orbitModellerService.modelOrbit(planet.body.orbit, color);
+                scene.add(orbit);
+            });
+            
+            // Orientation indicator
+            container2 = document.getElementById('scene-orientation-div-details');
+
+            // renderer
+            renderer2 = new THREE.WebGLRenderer();
+            renderer2.setClearColor( 0x000000, 1 );
+            renderer2.setSize( $rootScope.ordivsc, $rootScope.ordivsc );
+            container2.appendChild( renderer2.domElement );
+
+            // scene
+            scene2 = sceneFactoryHelper.initOrientationScene();
+
+            // camera
+            camera2 = new THREE.PerspectiveCamera( 50, $rootScope.ordivsc / $rootScope.ordivsc, 1, 1000 );
+            camera2.up = camera.up; // important!
 
             function render() {
-                requestAnimationFrame( render );
                 renderer.render( scene, camera );
+                renderer2.render( scene2, camera2 );
             }
+
+            (function animate() {
+
+                requestAnimationFrame( animate );
+
+                orbitControls.update();
+
+                camera2.position.copy( camera.position );
+                camera2.position.sub( orbitControls.target ); // added by @libe
+                camera2.position.setLength( 150 );
+
+                camera2.lookAt( scene2.position );
+                render();
+            })();
         }, function() {
             // do something;
         });

@@ -1,4 +1,4 @@
-app.factory('neoFactory', ['$log', '$http', function($log, $http) {
+app.factory('neoFactory', ['$log', '$http','errorManagerHelper', function($log, $http, errorManagerHelper) {
     
     var neoFactory = {};
     neoFactory.API_KEY = 'GV5BwqkiDLorofJQHZvd7u29AtEM24fq5D21vyew';
@@ -37,6 +37,9 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
                 }
             }, function(response) {
                 neoFactory.results = [];
+                if (response.status !== 404) {
+                    errorManagerHelper.showError('Une erreur est survenue lors de la communication avec les serveurs du JPL. Veuillez réessayer plus tard.')
+                }
                 errorCallback(response);
             });
         }
@@ -55,6 +58,7 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
                     successCallback();
                 }
             }, function(response) {
+                errorManagerHelper.showError('Une erreur est survenue lors de la communication avec les serveurs du JPL. Veuillez réessayer plus tard.')
                 errorCallback(response);
             });
         }
@@ -79,6 +83,7 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
                 successCallback();
             } else {
                 neoFactory.results = [];
+                errorManagerHelper.showError('Une erreur est survenue lors de la communication avec les serveurs du JPL. Veuillez réessayer plus tard.')
                 successCallback();
             }
         }, function(response) {
@@ -126,6 +131,7 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
             }
         }, function(response) {
             neoFactory.results = [];
+            errorManagerHelper.showError('Une erreur est survenue lors de la communication avec les serveurs du JPL. Veuillez réessayer plus tard.')
             errorCallback(response);
         })
     }
@@ -163,6 +169,7 @@ app.factory('neoFactory', ['$log', '$http', function($log, $http) {
                 neoFactory.stats = response.data;
                 callback();
             } else {
+                errorManagerHelper.showError('Une erreur est survenue lors de la communication avec les serveurs du JPL. Veuillez réessayer plus tard.')
                 neoFactory.stats = {
                     near_earth_object_count: 'N/A',
                     last_updated: 'N/A'
