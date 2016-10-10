@@ -1,10 +1,6 @@
 app.service('planetListsHelper', ['$log', function($log) {
     this.solarSystemPlanetList = function() {
         return [{
-            "display_name":"Soleil",
-            "url":"/solarSystem",
-            "item_id":1
-        },{
             "display_name":"Mercure",
             "url":"/system/mercury",
             "item_id":1
